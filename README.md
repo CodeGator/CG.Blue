@@ -1,7 +1,7 @@
 # CG.Blue: 
-[![Build Status](https://dev.azure.com/codegator/CG.Blue/_apis/build/status/CodeGator.CG.Blue?branchName=main)](https://dev.azure.com/codegator/CG.Blue/_build/latest?definitionId=93&branchName=main)
+[![Build Status](https://dev.azure.com/codegator/CG.Blue/_apis/build/status/CodeGator.CG.Blue?branchName=main)](https://dev.azure.com/codegator/CG.Blue/_build/latest?definitionId=96&branchName=main)
 [![Github docs](https://img.shields.io/static/v1?label=Documentation&message=online&color=blue)](https://codegator.github.io/CG.Blue/index.html)
-![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/codegator/CG.Blue/93)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/codegator/CG.Blue/96)
 [![Github discussion](https://img.shields.io/badge/Discussion-online-blue)](https://github.com/CodeGator/CG.Blue/discussions)
 
 ### What does it do?

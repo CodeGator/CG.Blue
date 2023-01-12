@@ -5,7 +5,7 @@ namespace Microsoft.AspNetCore.Builder;
 /// This class contains extension methods related to the <see cref="WebApplicationBuilder"/>
 /// type.
 /// </summary>
-public static class WebApplicationBuilderExtensions001
+public static class WebApplicationBuilderExtensions005
 {
     // *******************************************************************
     // Public methods.

@@ -6,15 +6,25 @@
 
 ### What does it do?
 
-Blue is an idea for a file / BLOB / meta-data storage microservice. 
+Blue is an idea for a microservice to store files / BLOBs / meta-data locally.
 
-### What platform(s) does it support?
+### What runtime(s) does it support?
 
-* .NET 7.x or higher
+* [.NET 7.x](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) or higher
+
+### What OS(s) does it support?
+
+* [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) 
+
+* [Linux](https://en.wikipedia.org/wiki/Linux) (not tested)
+
+* [macOS](https://en.wikipedia.org/wiki/MacOS) (not tested)
 
 ### What database(s) does it support?
 
-* For now, SqlServer 2019, or higher.
+* [SqlServer](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
+
+* [SQLite](https://www.sqlite.org/index.html)
 
 ### How do I contact you?
 

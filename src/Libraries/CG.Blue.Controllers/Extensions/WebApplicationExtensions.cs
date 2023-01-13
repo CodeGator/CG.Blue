@@ -33,6 +33,61 @@ public static class WebApplicationExtensions001
         // Wire up controller mapping.
         webApplication.MapControllers();
 
+        // Log what we are about to do.
+        webApplication.Logger.LogDebug(
+            "Adding ODATA query request"
+            );
+
+        // Use ODATA request middleware.
+        webApplication.UseODataQueryRequest();
+
+        // Log what we are about to do.
+        webApplication.Logger.LogDebug(
+            "Adding ODATA API versioning"
+            );
+
+        // Use API versioned ODATA batch middleware.
+        webApplication.UseVersionedODataBatching();
+
+        // Is this as development environment?
+        if (webApplication.Environment.IsDevelopment())
+        {
+            // Log what we are about to do.
+            webApplication.Logger.LogDebug(
+                "Adding ODATA route debugging"
+                );
+
+            // Enable ODATA route debugging.
+            webApplication.UseODataRouteDebug();
+
+            // Log what we are about to do.
+            webApplication.Logger.LogDebug(
+                "Adding Swagger"
+                );
+
+            // Enable Swagger
+            webApplication.UseSwagger();
+
+            // Log what we are about to do.
+            webApplication.Logger.LogDebug(
+                "Adding Swagger UI"
+                );
+
+            // Enable Swagger UI.
+            webApplication.UseSwaggerUI(options =>
+            {
+                var descriptions = webApplication.DescribeApiVersions();
+
+                // build a swagger endpoint for each discovered API version
+                foreach (var description in descriptions)
+                {
+                    var url = $"/swagger/{description.GroupName}/swagger.json";
+                    var name = description.GroupName.ToUpperInvariant();
+                    options.SwaggerEndpoint(url, name);
+                }
+            });
+        }
+
         // Return the application.
         return webApplication;
     }

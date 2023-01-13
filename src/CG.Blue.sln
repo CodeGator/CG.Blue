@@ -22,15 +22,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue", "Libraries\CG.Blu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Controllers", "Libraries\CG.Blue.Controllers\CG.Blue.Controllers.csproj", "{E335B118-89BF-4C55-85A3-0387D8D979DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG.Blue.Data", "Data\CG.Blue.Data\CG.Blue.Data.csproj", "{0F812F76-2F3F-41A2-815B-6AE98193B840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Data", "Data\CG.Blue.Data\CG.Blue.Data.csproj", "{0F812F76-2F3F-41A2-815B-6AE98193B840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG.Blue.Data.InMemory", "Data\CG.Blue.Data.InMemory\CG.Blue.Data.InMemory.csproj", "{CC0F4706-737F-45B9-8BA2-C26F9251EA26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Data.InMemory", "Data\CG.Blue.Data.InMemory\CG.Blue.Data.InMemory.csproj", "{CC0F4706-737F-45B9-8BA2-C26F9251EA26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG.Blue.Data.Sqlite", "Data\CG.Blue.Data.Sqlite\CG.Blue.Data.Sqlite.csproj", "{123CF69D-0081-47DD-877E-983902DD6453}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Data.Sqlite", "Data\CG.Blue.Data.Sqlite\CG.Blue.Data.Sqlite.csproj", "{123CF69D-0081-47DD-877E-983902DD6453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG.Blue.Data.SqlServer", "Data\CG.Blue.Data.SqlServer\CG.Blue.Data.SqlServer.csproj", "{1D2F58C6-B374-4A98-AB8C-38607DC45C71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Data.SqlServer", "Data\CG.Blue.Data.SqlServer\CG.Blue.Data.SqlServer.csproj", "{1D2F58C6-B374-4A98-AB8C-38607DC45C71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG.Blue.Services", "Libraries\CG.Blue.Services\CG.Blue.Services.csproj", "{04B83BEE-9BCB-4A1A-B477-1716555447E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Services", "Libraries\CG.Blue.Services\CG.Blue.Services.csproj", "{04B83BEE-9BCB-4A1A-B477-1716555447E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CG.Blue.Host", "Hosts\CG.Blue.Host\CG.Blue.Host.csproj", "{15BD9D7C-3F8F-4E23-9175-25F1AA49CF1F}"
 EndProject

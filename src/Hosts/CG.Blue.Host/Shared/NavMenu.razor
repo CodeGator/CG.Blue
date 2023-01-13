@@ -1,7 +1,20 @@
-﻿<MudNavMenu>
+﻿@inject IHostEnvironment Environment
+
+<MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+
+    <AuthorizeView Policy="@(PolicyNameDefaults.StandardPolicy)">
+        <MudNavGroup Icon="@Icons.Material.Filled.Deblur" Title="Debug">
+            <MudNavLink Href="swagger" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.HeartBroken">Swagger</MudNavLink>
+            @if (Environment.IsDevelopment())
+            {
+                <MudNavLink Href="$odata" Match=" NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Aod">ODATA</MudNavLink>
+            }
+        </MudNavGroup>
+    </AuthorizeView>
 
     <MudNavGroup Icon="@Icons.Material.Filled.Help" Title="Help">
         <MudNavLink Href="help/about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.BedroomBaby">About</MudNavLink>
     </MudNavGroup>
+
 </MudNavMenu>

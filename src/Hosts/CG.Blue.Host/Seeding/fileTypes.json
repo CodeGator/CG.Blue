@@ -1,0 +1,104 @@
+{
+  "FileTypes": [
+    {
+      "MimeType": "application/octect-stream",
+      "Extensions": [ ".bin", ".exe" ]
+    },
+    {
+      "MimeType": "image/jpg",
+      "Extensions": [ ".jpg", "jpeg" ]
+    },
+    {
+      "MimeType": "image/png",
+      "Extensions": [ ".png" ]
+    },
+    {
+      "MimeType": "image/tiff",
+      "Extensions": [ ".tiff", ".tif" ]
+    },
+    {
+      "MimeType": "image/bmp",
+      "Extensions": [ ".bmp" ]
+    },
+    {
+      "MimeType": "video/mpg",
+      "Extensions": [ ".mpg", ".mpeg", ".mpe" ]
+    },
+    {
+      "MimeType": "video/vnd.vivo",
+      "Extensions": [ ".viv", ".vivo" ]
+    },
+    {
+      "MimeType": "video/quicktime",
+      "Extensions": [ ".qt", ".mov" ]
+    },
+    {
+      "MimeType": "video/x-msvideo",
+      "Extensions": [ ".avi" ]
+    },
+    {
+      "MimeType": "application/pdf",
+      "Extensions": [ ".pdf" ]
+    },
+    {
+      "MimeType": "application/postscript",
+      "Extensions": [ ".ps", ".ai", ".eps" ]
+    },
+    {
+      "MimeType": "text/plain",
+      "Extensions": [ ".txt" ]
+    },
+    {
+      "MimeType": "text/richtext",
+      "Extensions": [ ".rtf" ]
+    },
+    {
+      "MimeType": "text/html",
+      "Extensions": [ ".htm", ".html" ]
+    },
+    {
+      "MimeType": "application/json",
+      "Extensions": [ ".json" ]
+    },
+    {
+      "MimeType": "application/xml",
+      "Extensions": [ ".xml" ]
+    },
+    {
+      "MimeType": "application/zip",
+      "Extensions": [ ".zip" ]
+    },
+    {
+      "MimeType": "application/tar",
+      "Extensions": [ ".tar" ]
+    },
+    {
+      "MimeType": "application/x-gzip",
+      "Extensions": [ ".gz" ]
+    },
+    {
+      "MimeType": "application/x-gtar",
+      "Extensions": [ ".gtar" ]
+    },
+    {
+      "MimeType": "audio/x-aiff",
+      "Extensions": [ ".aiff" ]
+    },
+    {
+      "MimeType": "audio/basic",
+      "Extensions": [ ".ua" ]
+    },
+    {
+      "MimeType": "audio/x-midi",
+      "Extensions": [ ".mid", ".midi" ]
+    },
+    {
+      "MimeType": "multipart/x-gzip",
+      "Extensions": [ ".gzip" ]
+    },
+    {
+      "MimeType": "multipart/x-zip",
+      "Extensions": [ ".zip" ]
+    }
+  ]
+}

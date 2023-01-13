@@ -51,7 +51,7 @@ try
     // Add CodeGator stuff
     builder.AddDataAccess(bootstrapLogger: BootstrapLogger.Instance())
         .AddServerSideIdentity(bootstrapLogger: BootstrapLogger.Instance())
-        //.AddSeeding<SeedDirector>(bootstrapLogger: BootstrapLogger.Instance())
+        .AddSeeding<SeedDirector>(bootstrapLogger: BootstrapLogger.Instance())
         .AddBlazorPlugins(bootstrapLogger: BootstrapLogger.Instance());
 
     // Log what we are about to do.
@@ -89,7 +89,6 @@ try
     app.UseStaticFiles();
     app.UseServerSideIdentity(); // <-- must be BEFORE UseRouting
     app.UseRouting();
-    app.MapControllers();
     app.MapBlazorHub();
     app.MapFallbackToPage("/_Host");
 

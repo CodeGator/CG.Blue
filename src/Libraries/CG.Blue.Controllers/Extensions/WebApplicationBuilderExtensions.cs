@@ -1,4 +1,7 @@
 ﻿
+using Asp.Versioning.Conventions;
+using CG.Blue.Controllers;
+
 namespace Microsoft.AspNetCore.Builder;
 
 /// <summary>
@@ -38,13 +41,88 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding the Blue controller assembly"
+            "Adding the Blue controllers"
             );
 
         // Add this controller assembly an application part.
-        webApplicationBuilder.Services.AddControllers().AddApplicationPart(
-            Assembly.GetExecutingAssembly()
-        );
+        webApplicationBuilder.Services.AddControllers()
+            .AddApplicationPart(Assembly.GetExecutingAssembly())
+            .AddJsonOptions(options =>
+            {
+                // Use camel case properties in JSON.
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+
+                // Preserve references in JSON.
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            }).AddOData(options =>
+            {
+                options.Select();
+            });
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
+            "Adding support for problem details"
+            );
+
+        // Add problem details.
+        webApplicationBuilder.Services.AddProblemDetails();
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
+            "Adding support for API versioning"
+            );
+
+        // Add API versioning.
+        webApplicationBuilder.Services.AddApiVersioning(options =>
+        {
+            // Use a default version, if needed.
+            options.AssumeDefaultVersionWhenUnspecified = true;
+
+            // Tell the world about our versions.
+            options.ReportApiVersions = true;
+        }).AddOData(options =>
+        {
+            // Add the odata route.
+            options.AddRouteComponents("odata");
+        }).AddODataApiExplorer(options =>
+        {
+            // Format the group.
+            options.GroupNameFormat = "'v'VVV";
+
+            //options.QueryOptions.Controller<MimeTypesController>()
+            //    .Action(c => c.GetAsync(default))
+            //    .Allow(AllowedQueryOptions.Skip | AllowedQueryOptions.Count)
+            //    .AllowTop(100)
+            //    .AllowOrderBy("type", "subType");
+        });
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
+            "Adding support for Swagger"
+            );
+
+        // Add Swagger.
+        webApplicationBuilder.Services.AddSwaggerGen(options =>
+        {
+            // Use default values.
+            options.OperationFilter<SwaggerDefaultValues>();
+
+            // Use our XML comments.
+            options.IncludeXmlComments(
+                Path.Combine(
+                    AppContext.BaseDirectory,
+                    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"
+                    ));
+        });
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
+            "Adding support for Swagger configuration"
+            );
+
+        // Add the swagger configuration.
+        webApplicationBuilder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfiguration>();
 
         // Return the application builder.
         return webApplicationBuilder;

@@ -2,8 +2,7 @@
 namespace CG.Blue.Data;
 
 /// <summary>
-/// This class is a data-context for the <see cref="CG.Blue"/>
-/// microservice.
+/// This class is a data-context for the <see cref="CG.Blue"/> microservice.
 /// </summary>
 public class BlueDbContext : DbContext
 {
@@ -12,6 +11,16 @@ public class BlueDbContext : DbContext
     // *******************************************************************
 
     #region Properties
+
+    /// <summary>
+    /// This property contains the collection of file types.
+    /// </summary>
+    public virtual DbSet<FileTypeEntity> FileTypes { get; set; } = null!;
+
+    /// <summary>
+    /// This property contains the collection of MIME types.
+    /// </summary>
+    public virtual DbSet<MimeTypeEntity> MimeTypes { get; set; } = null!;
 
     #endregion
 
@@ -48,7 +57,8 @@ public class BlueDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Map the entities.
-        //modelBuilder.ApplyConfiguration(new ConfigurationEventEntityMap(modelBuilder));
+        modelBuilder.ApplyConfiguration(new FileTypeEntityMap(modelBuilder));
+        modelBuilder.ApplyConfiguration(new MimeTypeEntityMap(modelBuilder));
 
         // Give the base class a chance.
         base.OnModelCreating(modelBuilder);

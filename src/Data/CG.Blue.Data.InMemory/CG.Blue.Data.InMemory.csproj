@@ -5,6 +5,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Description>In-memory provider for the CG.Blue microservice.</Description>
   </PropertyGroup>
 
   <ItemGroup>

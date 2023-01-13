@@ -1,4 +1,12 @@
-﻿global using CG.Blue.Options;
+﻿global using CG.Blue.Facades;
+global using CG.Blue;
+global using CG.Blue.Models;
+global using CG.Blue.Options;
+global using CG.Seeding;
 global using CG.Validations;
+global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
+global using CG.Blue.Repositories;
+global using CG.Blue.Managers;
+global using CG.Blue.Directors;

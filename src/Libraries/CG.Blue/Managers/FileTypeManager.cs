@@ -1,0 +1,376 @@
+﻿
+namespace CG.Blue.Managers;
+
+/// <summary>
+/// This class is a default implementation of the <see cref="IFileTypeManager"/>
+/// interface.
+/// </summary>
+internal class FileTypeManager : IFileTypeManager
+{
+    // *******************************************************************
+    // Fields.
+    // *******************************************************************
+
+    #region Fields
+
+    /// <summary>
+    /// This field contains the repository for this manager.
+    /// </summary>
+    internal protected readonly IFileTypeRepository _fileTypeRepository = null!;
+
+    /// <summary>
+    /// This field contains the logger for this manager.
+    /// </summary>
+    internal protected readonly ILogger<IFileTypeManager> _logger = null!;
+
+    #endregion
+
+    // *******************************************************************
+    // Constructors.
+    // *******************************************************************
+
+    #region Constructors
+
+    /// <summary>
+    /// This constructor creates a new instance of the <see cref="FileTypeManager"/>
+    /// class.
+    /// </summary>
+    /// <param name="fileTypeRepository">The file type repository to use
+    /// with this manager.</param>
+    /// <param name="logger">The logger to use with this manager.</param>
+    /// <exception cref="ArgumentException">This exception is thrown whenever one
+    /// or more arguments are missing, or invalid.</exception>
+    public FileTypeManager(
+        IFileTypeRepository fileTypeRepository,
+        ILogger<IFileTypeManager> logger
+        )
+    {
+        // Validate the arguments before attempting to use them.
+        Guard.Instance().ThrowIfNull(fileTypeRepository, nameof(fileTypeRepository))
+            .ThrowIfNull(logger, nameof(logger));
+
+        // Save the reference(s)
+        _fileTypeRepository = fileTypeRepository;
+        _logger = logger;
+    }
+
+    #endregion
+
+    // *******************************************************************
+    // Public methods.
+    // *******************************************************************
+
+    #region Public methods
+
+    /// <inheritdoc/>
+    public virtual async Task<bool> AnyAsync(
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.AnyAsync)
+                );
+
+            // Check the repository for the data.
+            var result = await _fileTypeRepository.AnyAsync(
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results,
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for file types!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to search for file types!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<long> CountAsync(
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.CountAsync)
+                );
+
+            // Perform the search.
+            var result = await _fileTypeRepository.CountAsync(
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to count file types!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to count file types!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<FileTypeModel> CreateAsync(
+        FileTypeModel fileType,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(fileType, nameof(fileType))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Updating the {name} model stats",
+                nameof(FileTypeModel)
+                );
+
+            // Ensure the stats are correct.
+            fileType.CreatedOnUtc = DateTime.UtcNow;
+            fileType.CreatedBy = userName;
+            fileType.LastUpdatedBy = null;
+            fileType.LastUpdatedOnUtc = null;
+
+            // Extensions are always lower case.
+            fileType.Extension = fileType.Extension.ToLower().Trim();
+
+            // Extensions always start with a '.' character.
+            if (!fileType.Extension.StartsWith('.'))
+            {
+                fileType.Extension = $".{fileType.Extension}";
+            }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.CreateAsync)
+                );
+
+            // Perform the operation.
+            var result = await _fileTypeRepository.CreateAsync(
+                fileType,
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to create a new file type!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to create a new file type!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task DeleteAsync(
+        FileTypeModel fileType,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(fileType, nameof(fileType))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Updating the {name} model stats",
+                nameof(FileTypeModel)
+                );
+
+            // Ensure the stats are correct.
+            fileType.LastUpdatedOnUtc = DateTime.UtcNow;
+            fileType.LastUpdatedBy = userName;
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.DeleteAsync)
+                );
+
+            // Perform the operation.
+            await _fileTypeRepository.DeleteAsync(
+                fileType,
+                cancellationToken
+                ).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to delete a file type!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to delete a file type!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<FileTypeModel?> FindByExtensionAsync(
+        string extension,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNullOrEmpty(extension, nameof(extension));
+
+        // Try to search using cached data. If that fails then
+        //   defer to the repository and do it the old school way.
+        
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.FindByExtensionAsync)
+                );
+
+            // Perform the operation.
+            var result = await _fileTypeRepository.FindByExtensionAsync(
+                extension,
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for a file type by extension!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to search for a file type " +
+                "by extension!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<FileTypeModel> UpdateAsync(
+        FileTypeModel fileType,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(fileType, nameof(fileType))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Updating the {name} model stats",
+                nameof(FileTypeModel)
+                );
+
+            // Ensure the stats are correct.
+            fileType.LastUpdatedOnUtc = DateTime.UtcNow;
+            fileType.LastUpdatedBy = userName;
+
+            // Extensions are always lower case.
+            fileType.Extension = fileType.Extension.ToLower().Trim();
+
+            // Extensions always start with a '.' character.
+            if (!fileType.Extension.StartsWith('.'))
+            {
+                fileType.Extension = $".{fileType.Extension}";
+            }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IFileTypeRepository.UpdateAsync)
+                );
+
+            // Perform the operation.
+            var result = await _fileTypeRepository.UpdateAsync(
+                fileType,
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to update a file type!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to update a file type!",
+                innerException: ex
+                );
+        }
+    }
+
+    #endregion
+}

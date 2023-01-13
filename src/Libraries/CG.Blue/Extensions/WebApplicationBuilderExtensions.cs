@@ -1,4 +1,6 @@
 ﻿
+using CG.Blue.Facades;
+
 namespace Microsoft.AspNetCore.Builder;
 
 /// <summary>
@@ -54,7 +56,8 @@ public static class WebApplicationBuilderExtensions001
             );
 
         // Add the managers.
-        //webApplicationBuilder.Services.AddScoped<IConfigurationEventManager, ConfigurationEventManager>();
+        webApplicationBuilder.Services.AddScoped<IFileTypeManager, FileTypeManager>();
+        webApplicationBuilder.Services.AddScoped<IMimeTypeManager, MimeTypeManager>();
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
@@ -85,11 +88,19 @@ public static class WebApplicationBuilderExtensions001
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
+            "Wiring up the Blue facades"
+            );
+
+        // Add the facades.
+        webApplicationBuilder.Services.AddScoped<ISupportFacade, SupportFacade>();
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
             "Wiring up the Blue API"
             );
 
         // Add the API.
-        //webApplicationBuilder.Services.AddScoped<IBlueApi, BlueApi>();
+        webApplicationBuilder.Services.AddScoped<IBlueApi, BlueApi>();
 
         // Return the application builder.
         return webApplicationBuilder;

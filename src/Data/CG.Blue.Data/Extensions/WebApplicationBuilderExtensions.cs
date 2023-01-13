@@ -43,7 +43,8 @@ public static class WebApplicationBuilderExtensions004
             );
 
         // Add the repositories
-        //webApplicationBuilder.Services.AddScoped<IConfigurationEventRepository, ConfigurationEventRepository>();
+        webApplicationBuilder.Services.AddScoped<IFileTypeRepository, FileTypeRepository>();
+        webApplicationBuilder.Services.AddScoped<IMimeTypeRepository, MimeTypeRepository>();
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
@@ -54,7 +55,8 @@ public static class WebApplicationBuilderExtensions004
         webApplicationBuilder.Services.AddAutoMapper(cfg =>
         {
             // Wire up the conversion maps.
-            //cfg.CreateMap<ConfigurationEventModel, ConfigurationEventEntity>().ReverseMap();
+            cfg.CreateMap<FileTypeModel, FileTypeEntity>().ReverseMap();
+            cfg.CreateMap<MimeTypeModel, MimeTypeEntity>().ReverseMap();
         });
 
         // Return the application builder.

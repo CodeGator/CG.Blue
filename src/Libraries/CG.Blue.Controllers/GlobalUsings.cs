@@ -1,5 +1,21 @@
-﻿
+﻿global using Asp.Versioning;
+global using Asp.Versioning.OData;
+global using CG.Blue.Models;
+global using CG.Blue.Swagger;
 global using CG.Validations;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.OData;
+global using Microsoft.AspNetCore.OData.Query;
+global using Microsoft.AspNetCore.OData.Routing.Controllers;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using Microsoft.OData.ModelBuilder;
+global using Microsoft.OpenApi.Models;
+global using Swashbuckle.AspNetCore.SwaggerGen;
+global using System.Net.Mime;
 global using System.Reflection;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;

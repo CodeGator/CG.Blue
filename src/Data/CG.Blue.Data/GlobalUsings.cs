@@ -1,4 +1,14 @@
-﻿global using Microsoft.EntityFrameworkCore;
+﻿global using CG.Blue.Data.Repositories;
+global using AutoMapper;
+global using CG.Blue.Models;
+global using CG.Blue.Repositories;
+global using CG.Blue.Data.Entities;
+global using CG.EntityFrameworkCore.Repositories;
+global using CG.EntityFrameworkCore.Entities;
+global using CG.EntityFrameworkCore.Maps;
 global using CG.Validations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
+global using CG.Blue.Data.Maps;

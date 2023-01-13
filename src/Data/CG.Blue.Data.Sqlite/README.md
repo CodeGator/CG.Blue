@@ -18,4 +18,18 @@ add-migration MyMigration -p CG.Blue.Data.Sqlite
 
 Remember to set the start project back to the CG.Blue.Host project (or whatever project you normally start with), when you're done.
 
+To deploy SQL for migrations in a production environment, use the following from the command line:
+
+```
+dotnet ef migrations script --idempotent
+```
+
+Or using the following command, in Visual Studio:
+
+```
+Script-Migration -Idempotent
+```
+
+[Here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs) is a link with more suggestions for generating migrations.
+
 

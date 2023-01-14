@@ -13,6 +13,11 @@ public class BlueDbContext : DbContext
     #region Properties
 
     /// <summary>
+    /// This property contains the collection of BLOBs.
+    /// </summary>
+    public virtual DbSet<BlobEntity> BlobTypes { get; set; } = null!;
+
+    /// <summary>
     /// This property contains the collection of file types.
     /// </summary>
     public virtual DbSet<FileTypeEntity> FileTypes { get; set; } = null!;
@@ -57,6 +62,7 @@ public class BlueDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Map the entities.
+        modelBuilder.ApplyConfiguration(new BlobEntityMap(modelBuilder));
         modelBuilder.ApplyConfiguration(new FileTypeEntityMap(modelBuilder));
         modelBuilder.ApplyConfiguration(new MimeTypeEntityMap(modelBuilder));
 

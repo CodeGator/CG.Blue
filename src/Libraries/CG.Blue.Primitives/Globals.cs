@@ -13,6 +13,18 @@ public static class Globals
     public static class Models
     {
         /// <summary>
+        /// This class contains sizes for <see cref="BlobModel"/> properties.
+        /// </summary>
+        public static class Blobs
+        {
+            /// <summary>
+            /// This constant represents the length of the <see cref="BlobModel.LocalFilePath"/> 
+            /// property.
+            /// </summary>
+            public const int FilePathLength = 260;
+        }
+
+        /// <summary>
         /// This class contains sizes for <see cref="MimeTypeModel"/> properties.
         /// </summary>
         public static class MimeTypes

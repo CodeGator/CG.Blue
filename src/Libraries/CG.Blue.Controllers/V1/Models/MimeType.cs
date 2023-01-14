@@ -1,7 +1,7 @@
 ﻿
 namespace CG.Blue.V1.Models;
 
-// <summary>
+/// <summary>
 /// This class is a model that represents a Multipurpose Internet Mail 
 /// Extension (MIME) type.
 /// </summary>

@@ -63,8 +63,8 @@ public class MimeTypesController : ControllerBase
     /// <summary>
     /// This method gets a collection of <see cref="MimeType"/> objects.
     /// </summary>
-    /// <returns>A task to perform the operation that returns a collection of <see cref="MimeType"/>
-    /// objects.</returns>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
     [HttpGet]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -125,9 +125,8 @@ public class MimeTypesController : ControllerBase
     /// This method gets a single <see cref="MimeType"/> object, by matching
     /// the type and subtype to the given key.
     /// </summary>
-    /// <returns>A task to perform the operation that returns a matching
-    /// <see cref="MimeType"/> object, if a match was found, or <c>NULL</c> 
-    /// otherwise. </returns>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
     [HttpGet("{key}")]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -215,10 +214,8 @@ public class MimeTypesController : ControllerBase
     /// This method gets a collection of <see cref="MimeType"/> objects, 
     /// by matching their file extension to the given value.
     /// </summary>
-    /// <returns>A task to perform the operation that returns a collection 
-    /// of matching <see cref="MimeType"/> objects, if a match was found, 
-    /// or <c>NULL</c> otherwise.
-    /// </returns>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
     [HttpGet("ByExt/{extension}")]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]

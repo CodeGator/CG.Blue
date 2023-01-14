@@ -10,4 +10,9 @@ public interface IBlueApi
     /// This property contains an object that contains support objects.
     /// </summary>
     ISupportFacade Support { get; }
+
+    /// <summary>
+    /// This property contains an object that performs import operations.
+    /// </summary>
+    IImportDirector Imports { get; }
 }

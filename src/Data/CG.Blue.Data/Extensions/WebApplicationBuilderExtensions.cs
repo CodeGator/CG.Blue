@@ -43,6 +43,7 @@ public static class WebApplicationBuilderExtensions004
             );
 
         // Add the repositories
+        webApplicationBuilder.Services.AddScoped<IBlobRepository, BlobRepository>();
         webApplicationBuilder.Services.AddScoped<IFileTypeRepository, FileTypeRepository>();
         webApplicationBuilder.Services.AddScoped<IMimeTypeRepository, MimeTypeRepository>();
 
@@ -55,6 +56,7 @@ public static class WebApplicationBuilderExtensions004
         webApplicationBuilder.Services.AddAutoMapper(cfg =>
         {
             // Wire up the conversion maps.
+            cfg.CreateMap<BlobModel, BlobEntity>().ReverseMap();
             cfg.CreateMap<FileTypeModel, FileTypeEntity>().ReverseMap();
             cfg.CreateMap<MimeTypeModel, MimeTypeEntity>().ReverseMap();
         });

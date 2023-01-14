@@ -344,7 +344,7 @@ internal class FileTypeRepository :
 
             // Provider better context.
             throw new RepositoryException(
-                message: $"The repository failed to search for a file types!",
+                message: $"The repository failed to search for file types!",
                 innerException: ex
                 );
         }
@@ -405,13 +405,15 @@ internal class FileTypeRepository :
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a file type by extension!"
+                "Failed to search for a matching file type by the given " +
+                "extension: '{ext}'!",
+                extension
                 );
 
             // Provider better context.
             throw new RepositoryException(
-                message: $"The repository failed to search for a file " +
-                "type by extension!",
+                message: $"The repository failed to search for a matching " +
+                $"file type by the given extension: '{extension}'!",
                 innerException: ex
                 );
         }

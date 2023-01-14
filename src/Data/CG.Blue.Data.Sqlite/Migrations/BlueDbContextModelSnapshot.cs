@@ -17,6 +17,41 @@ namespace CG.Blue.Data.Sqlite.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
+            modelBuilder.Entity("CG.Blue.Data.Entities.BlobEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EncryptedAtRest")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("LastUpdatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LastUpdatedOnUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LocalFilePath")
+                        .IsRequired()
+                        .HasMaxLength(260)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+
+                    b.ToTable("Blobs", "Blue");
+                });
+
             modelBuilder.Entity("CG.Blue.Data.Entities.FileTypeEntity", b =>
                 {
                     b.Property<int>("Id")

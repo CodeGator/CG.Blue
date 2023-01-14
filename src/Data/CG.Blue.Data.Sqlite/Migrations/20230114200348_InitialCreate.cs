@@ -15,6 +15,24 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 name: "Blue");
 
             migrationBuilder.CreateTable(
+                name: "Blobs",
+                schema: "Blue",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LocalFilePath = table.Column<string>(type: "TEXT", unicode: false, maxLength: 260, nullable: false),
+                    EncryptedAtRest = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    LastUpdatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blobs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MimeTypes",
                 schema: "Blue",
                 columns: table => new
@@ -60,6 +78,12 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Blobs",
+                schema: "Blue",
+                table: "Blobs",
+                columns: new[] { "EncryptedAtRest", "LocalFilePath" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FileTypes",
                 schema: "Blue",
                 table: "FileTypes",
@@ -82,6 +106,10 @@ namespace CG.Blue.Data.Sqlite.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Blobs",
+                schema: "Blue");
+
             migrationBuilder.DropTable(
                 name: "FileTypes",
                 schema: "Blue");

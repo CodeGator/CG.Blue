@@ -1,6 +1,4 @@
 ﻿
-using CG.Blue.Facades;
-
 namespace Microsoft.AspNetCore.Builder;
 
 /// <summary>
@@ -56,6 +54,7 @@ public static class WebApplicationBuilderExtensions001
             );
 
         // Add the managers.
+        webApplicationBuilder.Services.AddScoped<IBlobManager, BlobManager>();
         webApplicationBuilder.Services.AddScoped<IFileTypeManager, FileTypeManager>();
         webApplicationBuilder.Services.AddScoped<IMimeTypeManager, MimeTypeManager>();
 
@@ -65,7 +64,7 @@ public static class WebApplicationBuilderExtensions001
             );
 
         // Add the directors.
-        //webApplicationBuilder.Services.AddScoped<IConfigurationDirector, ConfigurationDirector>();
+        webApplicationBuilder.Services.AddScoped<IImportDirector, ImportDirector>();
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(

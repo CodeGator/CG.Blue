@@ -22,6 +22,41 @@ namespace CG.Blue.Data.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CG.Blue.Data.Entities.BlobEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EncryptedAtRest")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastUpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastUpdatedOnUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LocalFilePath")
+                        .IsRequired()
+                        .HasMaxLength(260)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(260)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+
+                    b.ToTable("Blobs", "Blue");
+                });
+
             modelBuilder.Entity("CG.Blue.Data.Entities.FileTypeEntity", b =>
                 {
                     b.Property<int>("Id")

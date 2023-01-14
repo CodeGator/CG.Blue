@@ -295,13 +295,15 @@ internal class FileTypeManager : IFileTypeManager
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a file type by extension!"
+                "Failed to search for a matching file type by the given " +
+                "extension: '{ext}'!",
+                extension
                 );
 
             // Provider better context.
             throw new ManagerException(
-                message: $"The manager failed to search for a file type " +
-                "by extension!",
+                message: $"The manager failed to search for a matching " +
+                $"file type by given extension: '{extension}'!",
                 innerException: ex
                 );
         }

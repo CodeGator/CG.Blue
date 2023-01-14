@@ -12,7 +12,11 @@ public class BlueBllOptions
     // *******************************************************************
 
     #region Properties
-        
+
+    /// <summary>
+    /// This property contains options for BLOB storage.
+    /// </summary>
+    public BlobStorageOptions? BlobStorage { get; set; }
 
     #endregion
 }

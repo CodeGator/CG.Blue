@@ -10,3 +10,5 @@ global using Microsoft.Extensions.Logging;
 global using CG.Blue.Repositories;
 global using CG.Blue.Managers;
 global using CG.Blue.Directors;
+global using Microsoft.Extensions.Options;
+global using CG.Cryptography;

@@ -1,5 +1,5 @@
 ﻿
-using System.Runtime.CompilerServices;
+using System.Data;
 
 namespace CG.Blue.Data.Repositories;
 
@@ -536,13 +536,15 @@ internal class MimeTypeRepository :
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for mime types by extension!"
+                "Failed to search for matching mime types by the given " +
+                "extension: '{ext}'!",
+                extension
                 );
 
             // Provider better context.
             throw new RepositoryException(
-                message: $"The repository failed to search for mime " +
-                "types by extension!",
+                message: $"The repository failed to search for matching mime " +
+                $"types by the given extension: '{extension}'!",
                 innerException: ex
                 );
         }
@@ -593,13 +595,15 @@ internal class MimeTypeRepository :
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a mime type by id!"
+                "Failed to search for a matching mime type by the given " +
+                "id: '{id}'!",
+                id
                 );
 
             // Provider better context.
             throw new RepositoryException(
-                message: $"The repository failed to search for a mime " +
-                "type by id!",
+                message: $"The repository failed to search for a matching " +
+                $"mime type by the given id: '{id}'!",
                 innerException: ex
                 );
         }

@@ -357,13 +357,73 @@ internal class MimeTypeManager : IMimeTypeManager
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for mime types by type/subtype!"
+                "Failed to search for matching mime types by the given " +
+                "type: '{type}' and subtype: '{subType}'!",
+                type,
+                subType
                 );
 
             // Provider better context.
             throw new ManagerException(
-                message: $"The manager failed to search for mime " +
-                "types by type/subtype!",
+                message: $"The manager failed to search for matching mime " +
+                $"types by the given type: '{type}' and subtype: '{subType}'!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<IEnumerable<MimeTypeModel>> FindByTypeAsync(
+        string mimeType,
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+            // Split the mime type into parts.
+            var parts = mimeType.Split('/');
+
+            // Sanity check the results.
+            if (parts.Length != 2)
+            {
+                // Panic!!
+                throw new ArgumentException(
+                    "The mime type was invalid!"
+                    );
+            }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IMimeTypeRepository.FindByTypesAsync)
+                );
+
+            // Perform the operation.
+            var mimeTypes = await _mimeTypeRepository.FindByTypesAsync(
+                parts[0],
+                parts[1],
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return mimeTypes;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for matching mime types by the given " +
+                "mime type: '{type}'!",
+                mimeType
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to search for matching mime " +
+                $"types by the given mime type: '{mimeType}'!",
                 innerException: ex
                 );
         }
@@ -408,13 +468,15 @@ internal class MimeTypeManager : IMimeTypeManager
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for matching mime types!"
+                "Failed to search for matching mime types by the given " +
+                "extension: '{ext}'",
+                extension
                 );
 
             // Provider better context.
             throw new ManagerException(
                 message: $"The manager failed to search for matching " +
-                "mime types!",
+                $"mime types by the given extension: '{extension}'!",
                 innerException: ex
                 );
         }
@@ -453,13 +515,15 @@ internal class MimeTypeManager : IMimeTypeManager
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a matching mime type by id!"
+                "Failed to search for a matching mime type by the " +
+                "given id: '{id}'",
+                id
                 );
 
             // Provider better context.
             throw new ManagerException(
                 message: $"The manager failed to search for a matching " +
-                "mime type by id!",
+                $"mime type by the given id: '{id}'!",
                 innerException: ex
                 );
         }

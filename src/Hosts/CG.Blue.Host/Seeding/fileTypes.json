@@ -5,7 +5,7 @@
       "Extensions": [ ".bin", ".exe" ]
     },
     {
-      "MimeType": "image/jpg",
+      "MimeType": "image/jpeg",
       "Extensions": [ ".jpg", "jpeg" ]
     },
     {

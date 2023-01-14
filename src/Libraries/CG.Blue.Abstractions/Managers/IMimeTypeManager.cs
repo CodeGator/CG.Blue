@@ -126,19 +126,19 @@ public interface IMimeTypeManager
         );
 
     /// <summary>
-    /// This method searches for a single matching <see cref="MimeTypeModel"/> object using
-    /// the given file extension.
+    /// This method searches for a sequence of <see cref="MimeTypeModel"/> objects
+    /// that have an extension matching the given value.
     /// </summary>
     /// <param name="extension">The file extension to use for the search.</param>
     /// <param name="cancellationToken">A cancellation token that is monitored
     /// for the lifetime of the method.</param>
-    /// <returns>A task to perform the operation that returns a matching <see cref="MimeTypeModel"/> 
-    /// object, if one was found, or NULL otherwise.</returns>
+    /// <returns>A task to perform the operation that returns a collection of matching 
+    /// <see cref="MimeTypeModel"/> objects.</returns>
     /// <exception cref="ArgumentException">This exception is thrown whenever one
     /// or more arguments are missing, or invalid.</exception>
     /// <exception cref="ManagerException">This exception is thrown whenever the
     /// manager fails to complete the operation.</exception>
-    Task<MimeTypeModel?> FindByExtensionAsync(
+    Task<IEnumerable<MimeTypeModel>> FindByExtensionAsync(
         string extension,
         CancellationToken cancellationToken = default
         );

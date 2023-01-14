@@ -33,36 +33,12 @@ public static class WebApplicationExtensions001
         // Wire up controller mapping.
         webApplication.MapControllers();
 
-        // Log what we are about to do.
-        webApplication.Logger.LogDebug(
-            "Adding ODATA query request"
-            );
-
-        // Use ODATA request middleware.
-        webApplication.UseODataQueryRequest();
-
-        // Log what we are about to do.
-        webApplication.Logger.LogDebug(
-            "Adding ODATA API versioning"
-            );
-
-        // Use API versioned ODATA batch middleware.
-        webApplication.UseVersionedODataBatching();
-
         // Is this as development environment?
         if (webApplication.Environment.IsDevelopment())
         {
             // Log what we are about to do.
             webApplication.Logger.LogDebug(
-                "Adding ODATA route debugging"
-                );
-
-            // Enable ODATA route debugging.
-            webApplication.UseODataRouteDebug();
-
-            // Log what we are about to do.
-            webApplication.Logger.LogDebug(
-                "Adding Swagger"
+                "Adding Swagger middleware"
                 );
 
             // Enable Swagger
@@ -70,17 +46,36 @@ public static class WebApplicationExtensions001
 
             // Log what we are about to do.
             webApplication.Logger.LogDebug(
-                "Adding Swagger UI"
+                "Adding Swagger UI middleware"
                 );
 
             // Enable Swagger UI.
             webApplication.UseSwaggerUI(options =>
             {
+                // Log what we are about to do.
+                webApplication.Logger.LogDebug(
+                    "Fetching API versions"
+                    );
+
+                // Get the API version descriptions.
                 var descriptions = webApplication.DescribeApiVersions();
+
+                // Log what we are about to do.
+                webApplication.Logger.LogDebug(
+                    "Adding endpoints for {count} API versions",
+                    descriptions.Count()
+                    );
 
                 // build a swagger endpoint for each discovered API version
                 foreach (var description in descriptions)
                 {
+                    // Log what we are about to do.
+                    webApplication.Logger.LogDebug(
+                        "Adding endpoint API version {desc}",
+                        description
+                        );
+
+                    // Add the endpoint for this API version.
                     var url = $"/swagger/{description.GroupName}/swagger.json";
                     var name = description.GroupName.ToUpperInvariant();
                     options.SwaggerEndpoint(url, name);

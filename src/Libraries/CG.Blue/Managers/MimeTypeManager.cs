@@ -1,6 +1,4 @@
 ﻿
-using System.Runtime.Intrinsics.X86;
-
 namespace CG.Blue.Managers;
 
 /// <summary>
@@ -374,7 +372,7 @@ internal class MimeTypeManager : IMimeTypeManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<MimeTypeModel?> FindByExtensionAsync(
+    public virtual async Task<IEnumerable<MimeTypeModel>> FindByExtensionAsync(
         string extension,
         CancellationToken cancellationToken = default
         )
@@ -384,6 +382,12 @@ internal class MimeTypeManager : IMimeTypeManager
 
         try
         {
+            // Should we add a leading '.' character?
+            if (!extension.StartsWith('.'))
+            {
+                extension = $".{extension}";
+            }
+
             // Log what we are about to do.
             _logger.LogTrace(
                 "Deferring to {name}",
@@ -391,26 +395,26 @@ internal class MimeTypeManager : IMimeTypeManager
                 );
 
             // Perform the operation.
-            var mimeType = await _mimeTypeRepository.FindByExtensionAsync(
+            var mimeTypes = await _mimeTypeRepository.FindByExtensionAsync(
                 extension,
                 cancellationToken
                 ).ConfigureAwait(false);
 
             // Return the results.
-            return mimeType;
+            return mimeTypes;
         }
         catch (Exception ex)
         {
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a matching mime type!"
+                "Failed to search for matching mime types!"
                 );
 
             // Provider better context.
             throw new ManagerException(
-                message: $"The manager failed to search for a matching " +
-                "mime type!",
+                message: $"The manager failed to search for matching " +
+                "mime types!",
                 innerException: ex
                 );
         }

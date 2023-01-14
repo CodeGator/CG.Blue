@@ -1,7 +1,4 @@
 ﻿
-using Asp.Versioning.Conventions;
-using CG.Blue.Controllers;
-
 namespace Microsoft.AspNetCore.Builder;
 
 /// <summary>
@@ -41,7 +38,7 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding the Blue controllers"
+            "Adding the Blue REST controllers"
             );
 
         // Add this controller assembly an application part.
@@ -55,9 +52,6 @@ public static class WebApplicationBuilderExtensions002
 
                 // Preserve references in JSON.
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-            }).AddOData(options =>
-            {
-                options.Select();
             });
 
         // Tell the world what we are about to do.
@@ -76,26 +70,13 @@ public static class WebApplicationBuilderExtensions002
         // Add API versioning.
         webApplicationBuilder.Services.AddApiVersioning(options =>
         {
-            // Use a default version, if needed.
+            // Don't require a version.
             options.AssumeDefaultVersionWhenUnspecified = true;
 
             // Tell the world about our versions.
             options.ReportApiVersions = true;
-        }).AddOData(options =>
-        {
-            // Add the odata route.
-            options.AddRouteComponents("odata");
-        }).AddODataApiExplorer(options =>
-        {
-            // Format the group.
-            options.GroupNameFormat = "'v'VVV";
-
-            //options.QueryOptions.Controller<MimeTypesController>()
-            //    .Action(c => c.GetAsync(default))
-            //    .Allow(AllowedQueryOptions.Skip | AllowedQueryOptions.Count)
-            //    .AllowTop(100)
-            //    .AllowOrderBy("type", "subType");
-        });
+        }).AddMvc()
+        .AddApiExplorer();
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
@@ -105,7 +86,7 @@ public static class WebApplicationBuilderExtensions002
         // Add Swagger.
         webApplicationBuilder.Services.AddSwaggerGen(options =>
         {
-            // Use default values.
+            // Use these default values.
             options.OperationFilter<SwaggerDefaultValues>();
 
             // Use our XML comments.
@@ -121,7 +102,7 @@ public static class WebApplicationBuilderExtensions002
             "Adding support for Swagger configuration"
             );
 
-        // Add the swagger configuration.
+        // Add the configurator 3000 - now with contrast control!!!
         webApplicationBuilder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfiguration>();
 
         // Return the application builder.

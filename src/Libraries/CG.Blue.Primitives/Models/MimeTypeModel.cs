@@ -1,8 +1,9 @@
 ﻿
 namespace CG.Blue.Models;
 
-/// <summary>
-/// This class is a model that represents a MIME type.
+// <summary>
+/// This class is a model that represents a Multipurpose Internet Mail 
+/// Extension (MIME) type.
 /// </summary>
 public class MimeTypeModel : AuditedModelBase
 {

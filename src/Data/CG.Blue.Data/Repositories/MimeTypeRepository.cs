@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.CompilerServices;
+
 namespace CG.Blue.Data.Repositories;
 
 /// <summary>
@@ -367,7 +369,6 @@ internal class MimeTypeRepository :
                     .OrderBy(x => x.Type)
                     .ThenBy(x => x.SubType)
                     .Include(x => x.FileTypes)
-                    .AsNoTracking()
                     .ToListAsync(
                         cancellationToken
                         ).ConfigureAwait(false);
@@ -461,7 +462,6 @@ internal class MimeTypeRepository :
             // Perform the mime type search.
             var mimeTypes = await _dbContext.MimeTypes
                 .Include(x => x.FileTypes)
-                .AsNoTracking()
                 .ToListAsync(
                     cancellationToken
                     ).ConfigureAwait(false);
@@ -493,7 +493,7 @@ internal class MimeTypeRepository :
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<MimeTypeModel?> FindByExtensionAsync(
+    public virtual async Task<IEnumerable<MimeTypeModel>> FindByExtensionAsync(
         string extension,
         CancellationToken cancellationToken = default
         )
@@ -505,44 +505,28 @@ internal class MimeTypeRepository :
         {
             // Log what we are about to do.
             _logger.LogDebug(
-                "Searching for a matching file type."
+                "Searching for matching mime types."
                 );
 
-            // Perform the file type search.
-            var fileType = await _dbContext.FileTypes.Where(x => 
-                x.Extension == extension
-                ).AsNoTracking()
-                .FirstOrDefaultAsync(
+            // Get the matching mime types.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            var mimeTypes = await _dbContext.MimeTypes.Join(
+                _dbContext.FileTypes, 
+                x => x.Id,
+                y => y.MimeType.Id,
+                (x,y) => x
+                ).Where(x => x.FileTypes.Any(y => y.Extension == extension))
+                .Include(x => x.FileTypes)
+                .OrderBy(x => x.Type).ThenBy(x => x.SubType)
+                .ToListAsync(
                     cancellationToken
-                    ).ConfigureAwait(false);
-
-            // Did we fail?
-            if (fileType is null)
-            {
-                return null; // Not found!
-            }
-
-            // Perform the mime type search.
-            var mimeType = await _dbContext.MimeTypes.Where(x =>
-                x.Id == fileType.MimeTypeId
-                ).Include(x => x.FileTypes)
-                .FirstOrDefaultAsync(
-                    cancellationToken
-                    ).ConfigureAwait(false);
+                    );
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             // Convert the entity to a model.
-            var result = _mapper.Map<MimeTypeModel>(
-                mimeType
+            var result = mimeTypes.Select(x => 
+                _mapper.Map<MimeTypeModel>(x)
                 );
-
-            // Did we fail?
-            if (result is null)
-            {
-                // Panic!!
-                throw new AutoMapperMappingException(
-                    $"Failed to map the {nameof(MimeTypeModel)} entity to a model."
-                    );
-            }
 
             // Return the results.
             return result;
@@ -552,13 +536,13 @@ internal class MimeTypeRepository :
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to search for a mime type by extension!"
+                "Failed to search for mime types by extension!"
                 );
 
             // Provider better context.
             throw new RepositoryException(
-                message: $"The repository failed to search for a mime " +
-                "type by extension!",
+                message: $"The repository failed to search for mime " +
+                "types by extension!",
                 innerException: ex
                 );
         }
@@ -586,7 +570,6 @@ internal class MimeTypeRepository :
             var mimeType = await _dbContext.MimeTypes.Where(x => 
                 x.Id == id
                 ).Include(x => x.FileTypes)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(
                     cancellationToken
                     ).ConfigureAwait(false);

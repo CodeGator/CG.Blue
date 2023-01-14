@@ -19,11 +19,6 @@ public class ImportDirector : IImportDirector
     internal protected readonly IBlobManager _blobManager = null!;
 
     /// <summary>
-    /// This field contains the cryptographer for this director.
-    /// </summary>
-    internal protected readonly ICryptographer _cryptographer = null!;
-
-    /// <summary>
     /// This field contains the mime type manager for this director.
     /// </summary>
     internal protected readonly IMimeTypeManager _mimeTypeManager = null!;
@@ -46,27 +41,22 @@ public class ImportDirector : IImportDirector
     /// class.
     /// </summary>
     /// <param name="blobManager">The BLOB manager to use with this director.</param>
-    /// <param name="cryptographer">The cryptographer to use with this 
-    /// director.</param>
     /// <param name="mimeTypeManager">The mime type manager to use with 
     /// this director.</param>
     /// <param name="logger">The logger to use with this director.</param>
     public ImportDirector(
         IBlobManager blobManager,
-        ICryptographer cryptographer,
         IMimeTypeManager mimeTypeManager,
         ILogger<ImportDirector> logger
         ) 
     {
         // Validate the parameters before attempting to use them.
         Guard.Instance().ThrowIfNull(blobManager, nameof(blobManager))
-            .ThrowIfNull(cryptographer, nameof(cryptographer))
             .ThrowIfNull(mimeTypeManager, nameof(mimeTypeManager))
             .ThrowIfNull(logger, nameof(logger));
 
         // Save the reference(s).
         _blobManager = blobManager;
-        _cryptographer = cryptographer;
         _mimeTypeManager = mimeTypeManager;
         _logger = logger;
     }
@@ -94,6 +84,12 @@ public class ImportDirector : IImportDirector
 
         try
         {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Looking for a matching MIME type: '{mt}'",
+                mimeType
+                );
+
             // Look for a matching MIME type.
             var mimeTypeMatch = (await _mimeTypeManager.FindByTypeAsync(
                 mimeType,
@@ -104,6 +100,11 @@ public class ImportDirector : IImportDirector
             // If we didn't find a match use a default.
             if (mimeTypeMatch is null)
             {
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Looking for a default MIME type: application/octet-stream"
+                    );
+
                 // Look for a default type.
                 mimeTypeMatch = (await _mimeTypeManager.FindByTypesAsync(
                     "application",
@@ -130,6 +131,11 @@ public class ImportDirector : IImportDirector
                     $"mime type: {mimeType} has no extension associated with it!"
                     );
             }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Creating the BLOB"
+                );
 
             // Create the BLOB.
             var blob = await _blobManager.CreateAsync(

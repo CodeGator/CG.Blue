@@ -26,7 +26,7 @@ internal static class GuidExtensions
     /// one or more arguments are missing, or invalid.</exception>
     public static string ToFolderPath(
         this Guid guid,
-        FolderLevels pathType = FolderLevels.Single
+        FolderLevels pathType = FolderLevels.One
         )
     {
         // Validate the arguments before attempting to use them.
@@ -39,22 +39,23 @@ internal static class GuidExtensions
         string folderPath = "";
         switch (pathType)
         {
-            case FolderLevels.Single:
+            case FolderLevels.One:
                 folderPath = string.Format(
                     "{0:X2}{1}",
                     bytes[0],
                     Path.DirectorySeparatorChar                   
                     );
                 break;
-            case FolderLevels.Double:
+            case FolderLevels.Two:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}",
                     bytes[0],
                     Path.DirectorySeparatorChar,
-                    bytes[1]                    
+                    bytes[1] ,
+                    Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Triple:
+            case FolderLevels.Three:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}",
                     bytes[0],
@@ -65,7 +66,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar                    
                     );
                 break;
-            case FolderLevels.Quadruple:
+            case FolderLevels.Four:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}",
                     bytes[0],
@@ -78,7 +79,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Quintuple:
+            case FolderLevels.Five:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}",
                     bytes[0],
@@ -93,7 +94,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Sextuple:
+            case FolderLevels.Six:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}",
@@ -111,7 +112,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Septuple:
+            case FolderLevels.Seven:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}",
@@ -131,7 +132,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Octuple:
+            case FolderLevels.Eight:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}",
@@ -153,7 +154,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Nonuple:
+            case FolderLevels.Nine:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}",
@@ -177,7 +178,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Decuple:
+            case FolderLevels.Ten:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}",
@@ -203,7 +204,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Undecuple:
+            case FolderLevels.Eleven:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}" +
@@ -232,7 +233,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Duodecuple:
+            case FolderLevels.Twelve:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}" +
@@ -263,7 +264,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Tredecuple:
+            case FolderLevels.Thirteen:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}" +
@@ -296,7 +297,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Quattuordecuple:
+            case FolderLevels.Fourteen:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}" +
@@ -331,7 +332,7 @@ internal static class GuidExtensions
                     Path.DirectorySeparatorChar
                     );
                 break;
-            case FolderLevels.Quindecuple:
+            case FolderLevels.Fifteen:
                 folderPath = string.Format(
                     "{0:X2}{1}{2:X2}{3}{4:X2}{5}{6:X2}{7}{8:X2}{9}" +
                     "{10:X2}{11}{12:X2}{13}{14:X2}{15}{16:X2}{17}{18:X2}{19}" +
@@ -390,7 +391,7 @@ internal static class GuidExtensions
     public static string ToFileName(
         this Guid guid, 
         string extension,
-        FolderLevels pathType = FolderLevels.Single
+        FolderLevels pathType = FolderLevels.One
         )
     {
         // Validate the arguments before attempting to use them.
@@ -407,7 +408,7 @@ internal static class GuidExtensions
         string fileName = "";
         switch (pathType)
         {
-            case FolderLevels.Single:
+            case FolderLevels.One:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}{10:X2}{11:X2}{12:X2}{13:X2}" +
@@ -430,7 +431,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Double:
+            case FolderLevels.Two:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}{10:X2}{11:X2}{12:X2}{13:X2}" +
@@ -452,7 +453,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Triple:
+            case FolderLevels.Three:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}{10:X2}{11:X2}{12:X2}.{13}",
@@ -472,7 +473,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Quadruple:
+            case FolderLevels.Four:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}{10:X2}{11:X2}.{12}",
@@ -491,7 +492,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Quintuple:
+            case FolderLevels.Five:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}{10:X2}.{11}",
@@ -509,7 +510,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Sextuple:
+            case FolderLevels.Six:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}{9:X2}.{10}",
@@ -526,7 +527,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Septuple:
+            case FolderLevels.Seven:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}{8:X2}.{9}",
@@ -542,7 +543,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Octuple:
+            case FolderLevels.Eight:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}" +
                     "{7:X2}.{8}",
@@ -557,7 +558,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Nonuple:
+            case FolderLevels.Nine:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}.{7}",
                     bytes[9], 
@@ -570,7 +571,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Decuple:
+            case FolderLevels.Ten:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}.{6}",
                     bytes[10], 
@@ -582,7 +583,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Undecuple:
+            case FolderLevels.Eleven:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}.{5}",
                     bytes[11], 
@@ -593,7 +594,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Duodecuple:
+            case FolderLevels.Twelve:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}{3:X2}.{4}",
                     bytes[12], 
@@ -603,7 +604,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Tredecuple:
+            case FolderLevels.Thirteen:
                 fileName = string.Format(
                     "{0:X2}{1:X2}{2:X2}.{3}",
                     bytes[13],
@@ -612,7 +613,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Quattuordecuple:
+            case FolderLevels.Fourteen:
                 fileName = string.Format(
                     "{0:X2}{1:X2}.{2}",
                     bytes[14],
@@ -620,7 +621,7 @@ internal static class GuidExtensions
                     safeExtension
                     );
                 break;
-            case FolderLevels.Quindecuple:
+            case FolderLevels.Fifteen:
                 fileName = string.Format(
                     "{0:X2}.{1}",
                     bytes[15],

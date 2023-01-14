@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CG.Blue.Data.Sqlite.Migrations
 {
     [DbContext(typeof(BlueDbContext))]
-    [Migration("20230114200348_InitialCreate")]
+    [Migration("20230114230610_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -42,6 +42,9 @@ namespace CG.Blue.Data.Sqlite.Migrations
                     b.Property<DateTime?>("LastUpdatedOnUtc")
                         .HasColumnType("TEXT");
 
+                    b.Property<long>("Length")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("LocalFilePath")
                         .IsRequired()
                         .HasMaxLength(260)
@@ -50,7 +53,7 @@ namespace CG.Blue.Data.Sqlite.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });

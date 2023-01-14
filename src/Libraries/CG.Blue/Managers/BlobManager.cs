@@ -1,4 +1,6 @@
 ﻿
+using CG.Cryptography;
+
 namespace CG.Blue.Managers;
 
 /// <summary>
@@ -17,6 +19,11 @@ internal class BlobManager : IBlobManager
     /// This field contains the repository for this manager.
     /// </summary>
     internal protected readonly BlobStorageOptions? _blobStorageOptions;
+
+    /// <summary>
+    /// This field contains the cryptographer for this manager.
+    /// </summary>
+    internal protected readonly ICryptographer _cryptographer = null!;
 
     /// <summary>
     /// This field contains the repository for this manager.
@@ -41,6 +48,8 @@ internal class BlobManager : IBlobManager
     /// class.
     /// </summary>
     /// <param name="bllOptions">The BLL options to use with this manager.</param>
+    /// <param name="cryptographer">The cryptographer to use with this 
+    /// manager.</param>
     /// <param name="fileTypeRepository">The file type repository to use
     /// with this manager.</param>
     /// <param name="logger">The logger to use with this manager.</param>
@@ -48,17 +57,20 @@ internal class BlobManager : IBlobManager
     /// or more arguments are missing, or invalid.</exception>
     public BlobManager(
         IOptions<BlueBllOptions> bllOptions,
+        ICryptographer cryptographer,
         IBlobRepository fileTypeRepository,
         ILogger<IBlobManager> logger
         )
     {
         // Validate the arguments before attempting to use them.
         Guard.Instance().ThrowIfNull(bllOptions, nameof(bllOptions))
+            .ThrowIfNull(cryptographer, nameof(cryptographer))
             .ThrowIfNull(fileTypeRepository, nameof(fileTypeRepository))
             .ThrowIfNull(logger, nameof(logger));
 
         // Save the reference(s)
         _blobStorageOptions = bllOptions.Value.BlobStorage;
+        _cryptographer = cryptographer;
         _fileTypeRepository = fileTypeRepository;
         _logger = logger;
     }
@@ -86,27 +98,48 @@ internal class BlobManager : IBlobManager
 
         try
         {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Creating a {name} instance",
+                nameof(BlobModel)
+                );
+
             // Create the BLOB model.
             var blob = new BlobModel()
             {
                 Id = Guid.NewGuid()
             };
 
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Getting a safe file extension"
+                );
+
             // Get the extension associated with the MIME type.
             var safeExt = mimeType.FileTypes.FirstOrDefault()?.Extension;
 
-            // Is the extension missing?
+            // Did we fail?
             if (string.IsNullOrEmpty(safeExt))
             {
                 // Panic!!
-                throw new ArgumentException(
-                    $"The mime type: '{mimeType.Type}/{mimeType.SubType}' does not have an extension!"
+                throw new KeyNotFoundException(
+                    $"mime type: {mimeType} has no extension associated with it!"
                     );
             }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Checking for BLOB storage options"
+                );
 
             // Do we have BLOB storage options?
             if (_blobStorageOptions is not null)
             {
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Calculating a local storage path"
+                    );
+
                 // Create a complete path to our storage file.
                 blob.LocalFilePath = Path.Combine(
                     _blobStorageOptions.RootPath,
@@ -119,47 +152,106 @@ internal class BlobManager : IBlobManager
                         )
                     );
 
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Deciding whether to encrypt the file"
+                    );
+
                 // Should we encrypt the BLOB?
                 blob.EncryptedAtRest = _blobStorageOptions.EncryptAtRest;
             }
             else
             {
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Calculating a default local storage path"
+                    );
+
                 // Create a default path to our storage file.
                 blob.LocalFilePath = Path.Combine(
                     "C:\\Blue\\",
                     blob.Id.ToFolderPath(
-                        FolderLevels.Single
+                        FolderLevels.One
                         ),
                     blob.Id.ToFileName(
                         safeExt,
-                        FolderLevels.Single
+                        FolderLevels.One
                         )
+                    );
+
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Setting the file to not encrypted"
                     );
 
                 // By default we don't encrypt the files.
                 blob.EncryptedAtRest = false;
             }
 
-            // Should we encrypt the file?
-            if (blob.EncryptedAtRest)
-            {
-                // TODO : write the code for this.
-                throw new NotImplementedException();
-            }
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Setting the length of the BLOB"
+                );
 
-            // Ensure the path exists.
+            // Set the length of the BLOB.
+            blob.Length = stream.Length;
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Ensuring the local storage path exists"
+                );
+
+            // Ensure the storage path exists.
             Directory.CreateDirectory(
                 Path.GetDirectoryName(blob.LocalFilePath) ?? "C:\\Blue\\"
+                );
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Creating the local storage file"
                 );
 
             // Create the storage for the BLOB.
             using var fileStream = File.Create(blob.LocalFilePath);
 
-            // Copy the bits.
-            await stream.CopyToAsync(
-                fileStream,
-                cancellationToken
-                ).ConfigureAwait(false);
+            // Should we encrypt the file?
+            if (blob.EncryptedAtRest)
+            {
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Encrypting the BLOB bits"
+                    );
+
+                // Encrypt the bits.
+                var encryptedStream = await _cryptographer.AesEncryptAsync(
+                    stream,
+                    cancellationToken
+                    ).ConfigureAwait(false);
+
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Copying the BLOB bits to local storage"
+                    );
+
+                // Copy the bits.
+                await encryptedStream.CopyToAsync(
+                    fileStream,
+                    cancellationToken
+                    ).ConfigureAwait(false);
+            }
+            else
+            {
+                // Log what we are about to do.
+                _logger.LogTrace(
+                    "Copying the BLOB bits to local storage"
+                    );
+
+                // Copy the bits.
+                await stream.CopyToAsync(
+                    fileStream,
+                    cancellationToken
+                    ).ConfigureAwait(false);
+            }            
 
             // Return the results.
             return blob;

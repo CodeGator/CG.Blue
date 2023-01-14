@@ -39,6 +39,9 @@ namespace CG.Blue.Data.Sqlite.Migrations
                     b.Property<DateTime?>("LastUpdatedOnUtc")
                         .HasColumnType("TEXT");
 
+                    b.Property<long>("Length")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("LocalFilePath")
                         .IsRequired()
                         .HasMaxLength(260)
@@ -47,7 +50,7 @@ namespace CG.Blue.Data.Sqlite.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });

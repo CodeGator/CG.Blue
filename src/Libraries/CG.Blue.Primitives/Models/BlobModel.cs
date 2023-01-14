@@ -26,6 +26,11 @@ public class BlobModel : AuditedModelBase
     public string LocalFilePath { get; set; } = null!;
 
     /// <summary>
+    /// This property contains the length, in bytes, of the BLOB.
+    /// </summary>
+    public long Length { get; set; }
+
+    /// <summary>
     /// This property indicates whether the BLOB is encrypted, at rest.
     /// </summary>
     public bool EncryptedAtRest { get; set; }

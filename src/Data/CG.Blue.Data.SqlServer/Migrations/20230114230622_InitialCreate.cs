@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CG.Blue.Data.Sqlite.Migrations
+namespace CG.Blue.Data.SqlServer.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -19,13 +19,14 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 schema: "Blue",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    LocalFilePath = table.Column<string>(type: "TEXT", unicode: false, maxLength: 260, nullable: false),
-                    EncryptedAtRest = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastUpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
-                    LastUpdatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LocalFilePath = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
+                    Length = table.Column<long>(type: "bigint", nullable: false),
+                    EncryptedAtRest = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastUpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,14 +38,14 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 schema: "Blue",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Type = table.Column<string>(type: "TEXT", unicode: false, maxLength: 127, nullable: false),
-                    SubType = table.Column<string>(type: "TEXT", unicode: false, maxLength: 127, nullable: false),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastUpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
-                    LastUpdatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "varchar(127)", unicode: false, maxLength: 127, nullable: false),
+                    SubType = table.Column<string>(type: "varchar(127)", unicode: false, maxLength: 127, nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastUpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -56,14 +57,14 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 schema: "Blue",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    MimeTypeId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Extension = table.Column<string>(type: "TEXT", unicode: false, maxLength: 260, nullable: false),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastUpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
-                    LastUpdatedOnUtc = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MimeTypeId = table.Column<int>(type: "int", nullable: true),
+                    Extension = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastUpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,7 +82,7 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 name: "IX_Blobs",
                 schema: "Blue",
                 table: "Blobs",
-                columns: new[] { "EncryptedAtRest", "LocalFilePath" });
+                columns: new[] { "Length", "EncryptedAtRest", "LocalFilePath" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_FileTypes",

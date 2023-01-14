@@ -10,89 +10,89 @@ public enum FolderLevels
     /// This represents a one level folder path.
     /// </summary>
     [Description("A one level folder path")]
-    Single,
+    One,
 
     /// <summary>
     /// This represents a two level folder path.
     /// </summary>
     [Description("A two level folder path")]
-    Double,
+    Two,
 
     /// <summary>
     /// This represents a three level folder path.
     /// </summary>
     [Description("A three level folder path")]
-    Triple,
+    Three,
 
     /// <summary>
     /// This represents a four level folder path.
     /// </summary>
     [Description("A four level folder path")]
-    Quadruple,
+    Four,
 
     /// <summary>
     /// This represents a five level folder path.
     /// </summary>
     [Description("A five level folder path")]
-    Quintuple,
+    Five,
 
     /// <summary>
     /// This represents a six level folder path.
     /// </summary>
     [Description("A six level folder path")]
-    Sextuple,
+    Six,
 
     /// <summary>
     /// This represents a seven level folder path.
     /// </summary>
     [Description("A seven level folder path")]
-    Septuple,
+    Seven,
 
     /// <summary>
     /// This represents an eight level folder path.
     /// </summary>
     [Description("An eight level folder path")]
-    Octuple,
+    Eight,
 
     /// <summary>
     /// This represents a nine level folder path.
     /// </summary>
     [Description("A nine level folder path")]
-    Nonuple,
+    Nine,
 
     /// <summary>
     /// This represents a ten level folder path.
     /// </summary>
     [Description("A ten level folder path")]
-    Decuple,
+    Ten,
 
     /// <summary>
     /// This represents an eleven level folder path.
     /// </summary>
     [Description("An eleven level folder path")]
-    Undecuple,
+    Eleven,
 
     /// <summary>
     /// This represents a twelve level folder path.
     /// </summary>
     [Description("A twelve level folder path")]
-    Duodecuple,
+    Twelve,
 
     /// <summary>
     /// This represents a thirteen level folder path.
     /// </summary>
     [Description("A thirteen level folder path")]
-    Tredecuple,
+    Thirteen,
 
     /// <summary>
     /// This represents a fourteen level folder path.
     /// </summary>
     [Description("A fourteen level folder path")]
-    Quattuordecuple,
+    Fourteen,
 
     /// <summary>
     /// This represents a fifteen level folder path.
     /// </summary>
     [Description("A fifteen level folder path")]
-    Quindecuple,
+    Fifteen,
 }

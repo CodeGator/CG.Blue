@@ -64,9 +64,14 @@ internal class BlobEntityMap : AuditedEntityMapBase<BlobEntity>
         builder.Property(e => e.EncryptedAtRest)
             .IsRequired();
 
+        // Setup the column.
+        builder.Property(e => e.Length)
+            .IsRequired();
+
         // Setup the index.
         builder.HasIndex(e => new
         {
+            e.Length,
             e.EncryptedAtRest,
             e.LocalFilePath
         },

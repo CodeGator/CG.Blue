@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CG.Blue.Data.SqlServer.Migrations
 {
     [DbContext(typeof(BlueDbContext))]
-    [Migration("20230114200404_InitialCreate")]
+    [Migration("20230114230622_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -47,6 +47,9 @@ namespace CG.Blue.Data.SqlServer.Migrations
                     b.Property<DateTime?>("LastUpdatedOnUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("Length")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("LocalFilePath")
                         .IsRequired()
                         .HasMaxLength(260)
@@ -55,7 +58,7 @@ namespace CG.Blue.Data.SqlServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });

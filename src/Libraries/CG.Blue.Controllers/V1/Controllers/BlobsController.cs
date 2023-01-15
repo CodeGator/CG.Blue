@@ -1,7 +1,4 @@
 ﻿
-using System.IO;
-using System.IO.Pipelines;
-
 namespace CG.Blue.V1.Controllers;
 
 /// <summary>
@@ -73,6 +70,73 @@ public class BlobsController : ControllerBase
     #region Public methods
 
     /// <summary>
+    /// This method delete the <see cref="Blob"/> object that matches the
+    /// given identifier.
+    /// </summary>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public virtual async Task<IActionResult> DeleteAsync(
+        Guid id
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Starting {name} method",
+                nameof(GetAsync)
+                );
+
+            // Sanity check the model state.
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            // Look for the meta-data.
+            var blobMetaData = await _blueApi.Content.FindByIdAsync(
+                id
+                ).ConfigureAwait(false);    
+
+            // Did we fail?
+            if (blobMetaData is null)
+            {
+                return NotFound();  
+            }
+
+            // Delete the BLOB.
+            await _blueApi.Content.DeleteAsync(
+                blobMetaData,
+                User.Identity?.Name ?? "anonymous"
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            // Log the error in detail.
+            _logger.LogError(
+                ex,
+                "Failed to delete a BLOB!"
+                );
+
+            // Return an overview of the problem.
+            return Problem(
+                statusCode: StatusCodes.Status500InternalServerError,
+                detail: "The controller failed to delete a BLOB!"
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <summary>
     /// This method gets the bits for the matching <see cref="Blob"/> object, 
     /// if one is found.
     /// </summary>
@@ -81,6 +145,8 @@ public class BlobsController : ControllerBase
     [HttpGet("ById/{id}/Bits")]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public virtual async Task<IActionResult> GetBitsAsync(
         Guid id
@@ -147,6 +213,8 @@ public class BlobsController : ControllerBase
     [HttpGet("ById/{id}")]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public virtual async Task<IActionResult> GetAsync(
         Guid id
@@ -216,6 +284,7 @@ public class BlobsController : ControllerBase
     [HttpPost]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public virtual async Task<IActionResult> PostAsync(
         List<IFormFile> files

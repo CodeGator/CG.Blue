@@ -389,7 +389,7 @@ internal class BlobRepository :
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<BlobModel?> UpdateAsync(
+    public virtual async Task<BlobModel> UpdateAsync(
         BlobModel blob,
         CancellationToken cancellationToken = default
         )

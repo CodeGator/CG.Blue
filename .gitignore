@@ -378,3 +378,7 @@ launchSettings.json
 project.lock.json
 *.sublime-workspace
 
+# Local storage
+/**/LocalStorage/
+
+

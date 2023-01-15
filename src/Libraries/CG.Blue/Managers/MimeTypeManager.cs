@@ -532,7 +532,7 @@ internal class MimeTypeManager : IMimeTypeManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<MimeTypeModel?> UpdateAsync(
+    public virtual async Task<MimeTypeModel> UpdateAsync(
         MimeTypeModel mimeType,
         string userName,
         CancellationToken cancellationToken = default

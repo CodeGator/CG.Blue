@@ -390,6 +390,16 @@ internal class BlobManager : IBlobManager
                 blob,
                 cancellationToken
                 ).ConfigureAwait(false);
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Deleting bits from local storage"
+                );
+
+            // Delete the bits from local storage.
+            File.Delete(
+                blob.LocalFilePath
+                );
         }
         catch (Exception ex)
         {
@@ -552,7 +562,7 @@ internal class BlobManager : IBlobManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<BlobModel?> UpdateAsync(
+    public virtual async Task<BlobModel> UpdateAsync(
         BlobModel blob,
         string userName,
         CancellationToken cancellationToken = default

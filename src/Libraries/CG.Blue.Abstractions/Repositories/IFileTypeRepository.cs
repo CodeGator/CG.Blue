@@ -109,13 +109,12 @@ public interface IFileTypeRepository
     /// <param name="cancellationToken">A cancellation token that is monitored
     /// for the lifetime of the method.</param>
     /// <returns>A task to perform the operation that returns the newly updated
-    /// <see cref="FileTypeModel"/> object, if a match was found, or <c>NULL</c> 
-    /// otherwise.</returns>
+    /// <see cref="FileTypeModel"/> object.</returns>
     /// <exception cref="ArgumentException">This exception is thrown whenever one
     /// or more arguments are missing, or invalid.</exception>
     /// <exception cref="RepositoryException">This exception is thrown whenever the
     /// repository fails to complete the operation.</exception>
-    Task<FileTypeModel?> UpdateAsync(
+    Task<FileTypeModel> UpdateAsync(
         FileTypeModel fileType,
         CancellationToken cancellationToken = default
         );

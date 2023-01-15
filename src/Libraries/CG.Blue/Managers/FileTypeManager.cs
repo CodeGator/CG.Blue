@@ -312,7 +312,7 @@ internal class FileTypeManager : IFileTypeManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<FileTypeModel?> UpdateAsync(
+    public virtual async Task<FileTypeModel> UpdateAsync(
         FileTypeModel fileType,
         string userName,
         CancellationToken cancellationToken = default

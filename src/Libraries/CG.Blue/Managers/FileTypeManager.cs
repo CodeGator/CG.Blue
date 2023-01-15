@@ -312,7 +312,7 @@ internal class FileTypeManager : IFileTypeManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<FileTypeModel> UpdateAsync(
+    public virtual async Task<FileTypeModel?> UpdateAsync(
         FileTypeModel fileType,
         string userName,
         CancellationToken cancellationToken = default
@@ -350,13 +350,13 @@ internal class FileTypeManager : IFileTypeManager
                 );
 
             // Perform the operation.
-            var result = await _fileTypeRepository.UpdateAsync(
+            var updatedFileType = await _fileTypeRepository.UpdateAsync(
                 fileType,
                 cancellationToken
                 ).ConfigureAwait(false);
 
             // Return the results.
-            return result;
+            return updatedFileType;
         }
         catch (Exception ex)
         {

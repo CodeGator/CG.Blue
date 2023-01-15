@@ -33,6 +33,11 @@ public class BlobModel : AuditedModelBase
     public string OriginalFileName { get; set; } = null!;
 
     /// <summary>
+    /// This property contains the associated MIME type.
+    /// </summary>
+    public virtual MimeTypeModel? MimeType { get; set; }
+
+    /// <summary>
     /// This property contains the length, in bytes, of the BLOB.
     /// </summary>
     public long Length { get; set; }
@@ -41,6 +46,11 @@ public class BlobModel : AuditedModelBase
     /// This property indicates whether the BLOB is encrypted, at rest.
     /// </summary>
     public bool EncryptedAtRest { get; set; }
+
+    /// <summary>
+    /// This property contains the date/time when the BLOB was last read.
+    /// </summary>
+    public DateTime? LastReadOnUtc { get; set; }
 
     #endregion
 }

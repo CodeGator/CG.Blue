@@ -15,26 +15,6 @@ namespace CG.Blue.Data.SqlServer.Migrations
                 name: "Blue");
 
             migrationBuilder.CreateTable(
-                name: "Blobs",
-                schema: "Blue",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LocalFilePath = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
-                    OriginalFileName = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
-                    Length = table.Column<long>(type: "bigint", nullable: false),
-                    EncryptedAtRest = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastUpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Blobs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MimeTypes",
                 schema: "Blue",
                 columns: table => new
@@ -51,6 +31,35 @@ namespace CG.Blue.Data.SqlServer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MimeTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Blobs",
+                schema: "Blue",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LocalFilePath = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
+                    OriginalFileName = table.Column<string>(type: "varchar(260)", unicode: false, maxLength: 260, nullable: false),
+                    MimeTypeId = table.Column<int>(type: "int", nullable: true),
+                    Length = table.Column<long>(type: "bigint", nullable: false),
+                    EncryptedAtRest = table.Column<bool>(type: "bit", nullable: false),
+                    LastReadOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastUpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blobs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Blobs_MimeTypes_MimeTypeId",
+                        column: x => x.MimeTypeId,
+                        principalSchema: "Blue",
+                        principalTable: "MimeTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,7 +92,13 @@ namespace CG.Blue.Data.SqlServer.Migrations
                 name: "IX_Blobs",
                 schema: "Blue",
                 table: "Blobs",
-                columns: new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName" });
+                columns: new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName", "LastReadOnUtc", "MimeTypeId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blobs_MimeTypeId",
+                schema: "Blue",
+                table: "Blobs",
+                column: "MimeTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FileTypes",

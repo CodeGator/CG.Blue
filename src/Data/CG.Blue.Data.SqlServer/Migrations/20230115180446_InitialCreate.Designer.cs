@@ -3,63 +3,76 @@ using System;
 using CG.Blue.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CG.Blue.Data.Sqlite.Migrations
+namespace CG.Blue.Data.SqlServer.Migrations
 {
     [DbContext(typeof(BlueDbContext))]
-    [Migration("20230115145053_InitialCreate")]
+    [Migration("20230115180446_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CG.Blue.Data.Entities.BlobEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("EncryptedAtRest")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastReadOnUtc")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastUpdatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("Length")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bigint");
 
                     b.Property<string>("LocalFilePath")
                         .IsRequired()
                         .HasMaxLength(260)
                         .IsUnicode(false)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(260)");
+
+                    b.Property<int?>("MimeTypeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("OriginalFileName")
                         .IsRequired()
                         .HasMaxLength(260)
                         .IsUnicode(false)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(260)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName" }, "IX_Blobs");
+                    b.HasIndex("MimeTypeId");
+
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName", "LastReadOnUtc", "MimeTypeId" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });
@@ -68,29 +81,31 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Extension")
                         .IsRequired()
                         .HasMaxLength(260)
                         .IsUnicode(false)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(260)");
 
                     b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastUpdatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("MimeTypeId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -105,32 +120,34 @@ namespace CG.Blue.Data.Sqlite.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastUpdatedOnUtc")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SubType")
                         .IsRequired()
                         .HasMaxLength(127)
                         .IsUnicode(false)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(127)");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(127)
                         .IsUnicode(false)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(127)");
 
                     b.HasKey("Id");
 
@@ -138,6 +155,16 @@ namespace CG.Blue.Data.Sqlite.Migrations
                         .IsUnique();
 
                     b.ToTable("MimeTypes", "Blue");
+                });
+
+            modelBuilder.Entity("CG.Blue.Data.Entities.BlobEntity", b =>
+                {
+                    b.HasOne("CG.Blue.Data.Entities.MimeTypeEntity", "MimeType")
+                        .WithMany()
+                        .HasForeignKey("MimeTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("MimeType");
                 });
 
             modelBuilder.Entity("CG.Blue.Data.Entities.FileTypeEntity", b =>

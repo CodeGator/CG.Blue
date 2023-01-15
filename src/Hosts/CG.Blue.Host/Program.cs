@@ -98,7 +98,8 @@ try
         .UseBlazorPlugins();
 
     // Use Blue stuff.
-    app.UseBlueControllers();
+    app.UseBlueManagers()
+        .UseBlueControllers();
 
     // Run the application.
     app.Run();

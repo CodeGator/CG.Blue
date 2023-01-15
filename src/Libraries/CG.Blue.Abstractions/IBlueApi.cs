@@ -12,7 +12,7 @@ public interface IBlueApi
     ISupportFacade Support { get; }
 
     /// <summary>
-    /// This property contains an object that performs import operations.
+    /// This property contains an object that performs content operations.
     /// </summary>
-    IContentDirector Imports { get; }
+    IContentDirector Content { get; }
 }

@@ -26,31 +26,31 @@ references:
   isSpec: "True"
   fullName: CG.Blue.BlueApi.BlueApi
   nameWithType: BlueApi.BlueApi
-- uid: CG.Blue.BlueApi._importDirector
-  name: _importDirector
-  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi__importDirector
-  commentId: F:CG.Blue.BlueApi._importDirector
-  fullName: CG.Blue.BlueApi._importDirector
-  nameWithType: BlueApi._importDirector
+- uid: CG.Blue.BlueApi._contentDirector
+  name: _contentDirector
+  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi__contentDirector
+  commentId: F:CG.Blue.BlueApi._contentDirector
+  fullName: CG.Blue.BlueApi._contentDirector
+  nameWithType: BlueApi._contentDirector
 - uid: CG.Blue.BlueApi._supportFacade
   name: _supportFacade
   href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi__supportFacade
   commentId: F:CG.Blue.BlueApi._supportFacade
   fullName: CG.Blue.BlueApi._supportFacade
   nameWithType: BlueApi._supportFacade
-- uid: CG.Blue.BlueApi.Imports
-  name: Imports
-  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi_Imports
-  commentId: P:CG.Blue.BlueApi.Imports
-  fullName: CG.Blue.BlueApi.Imports
-  nameWithType: BlueApi.Imports
-- uid: CG.Blue.BlueApi.Imports*
-  name: Imports
-  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi_Imports_
-  commentId: Overload:CG.Blue.BlueApi.Imports
+- uid: CG.Blue.BlueApi.Content
+  name: Content
+  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi_Content
+  commentId: P:CG.Blue.BlueApi.Content
+  fullName: CG.Blue.BlueApi.Content
+  nameWithType: BlueApi.Content
+- uid: CG.Blue.BlueApi.Content*
+  name: Content
+  href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi_Content_
+  commentId: Overload:CG.Blue.BlueApi.Content
   isSpec: "True"
-  fullName: CG.Blue.BlueApi.Imports
-  nameWithType: BlueApi.Imports
+  fullName: CG.Blue.BlueApi.Content
+  nameWithType: BlueApi.Content
 - uid: CG.Blue.BlueApi.Support
   name: Support
   href: api/CG.Blue.BlueApi.html#CG_Blue_BlueApi_Support
@@ -182,6 +182,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Data.Entities.BlobEntity.Id
   nameWithType: BlobEntity.Id
+- uid: CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc
+  name: LastReadOnUtc
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_LastReadOnUtc
+  commentId: P:CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc
+  fullName: CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc
+  nameWithType: BlobEntity.LastReadOnUtc
+- uid: CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc*
+  name: LastReadOnUtc
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_LastReadOnUtc_
+  commentId: Overload:CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc
+  isSpec: "True"
+  fullName: CG.Blue.Data.Entities.BlobEntity.LastReadOnUtc
+  nameWithType: BlobEntity.LastReadOnUtc
 - uid: CG.Blue.Data.Entities.BlobEntity.Length
   name: Length
   href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_Length
@@ -208,6 +221,32 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Data.Entities.BlobEntity.LocalFilePath
   nameWithType: BlobEntity.LocalFilePath
+- uid: CG.Blue.Data.Entities.BlobEntity.MimeType
+  name: MimeType
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_MimeType
+  commentId: P:CG.Blue.Data.Entities.BlobEntity.MimeType
+  fullName: CG.Blue.Data.Entities.BlobEntity.MimeType
+  nameWithType: BlobEntity.MimeType
+- uid: CG.Blue.Data.Entities.BlobEntity.MimeType*
+  name: MimeType
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_MimeType_
+  commentId: Overload:CG.Blue.Data.Entities.BlobEntity.MimeType
+  isSpec: "True"
+  fullName: CG.Blue.Data.Entities.BlobEntity.MimeType
+  nameWithType: BlobEntity.MimeType
+- uid: CG.Blue.Data.Entities.BlobEntity.MimeTypeId
+  name: MimeTypeId
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_MimeTypeId
+  commentId: P:CG.Blue.Data.Entities.BlobEntity.MimeTypeId
+  fullName: CG.Blue.Data.Entities.BlobEntity.MimeTypeId
+  nameWithType: BlobEntity.MimeTypeId
+- uid: CG.Blue.Data.Entities.BlobEntity.MimeTypeId*
+  name: MimeTypeId
+  href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_MimeTypeId_
+  commentId: Overload:CG.Blue.Data.Entities.BlobEntity.MimeTypeId
+  isSpec: "True"
+  fullName: CG.Blue.Data.Entities.BlobEntity.MimeTypeId
+  nameWithType: BlobEntity.MimeTypeId
 - uid: CG.Blue.Data.Entities.BlobEntity.OriginalFileName
   name: OriginalFileName
   href: api/CG.Blue.Data.Entities.BlobEntity.html#CG_Blue_Data_Entities_BlobEntity_OriginalFileName
@@ -562,6 +601,32 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Data.Repositories.BlobRepository.DeleteAsync
   nameWithType: BlobRepository.DeleteAsync
+- uid: CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Data.Repositories.BlobRepository.html#CG_Blue_Data_Repositories_BlobRepository_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: BlobRepository.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Data.Repositories.BlobRepository.html#CG_Blue_Data_Repositories_BlobRepository_FindByIdAsync_
+  commentId: Overload:CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Data.Repositories.BlobRepository.FindByIdAsync
+  nameWithType: BlobRepository.FindByIdAsync
+- uid: CG.Blue.Data.Repositories.BlobRepository.UpdateAsync(BlobModel,CancellationToken)
+  name: UpdateAsync(BlobModel, CancellationToken)
+  href: api/CG.Blue.Data.Repositories.BlobRepository.html#CG_Blue_Data_Repositories_BlobRepository_UpdateAsync_BlobModel_CancellationToken_
+  commentId: M:CG.Blue.Data.Repositories.BlobRepository.UpdateAsync(BlobModel,CancellationToken)
+  fullName: CG.Blue.Data.Repositories.BlobRepository.UpdateAsync(BlobModel, CancellationToken)
+  nameWithType: BlobRepository.UpdateAsync(BlobModel, CancellationToken)
+- uid: CG.Blue.Data.Repositories.BlobRepository.UpdateAsync*
+  name: UpdateAsync
+  href: api/CG.Blue.Data.Repositories.BlobRepository.html#CG_Blue_Data_Repositories_BlobRepository_UpdateAsync_
+  commentId: Overload:CG.Blue.Data.Repositories.BlobRepository.UpdateAsync
+  isSpec: "True"
+  fullName: CG.Blue.Data.Repositories.BlobRepository.UpdateAsync
+  nameWithType: BlobRepository.UpdateAsync
 - uid: CG.Blue.Data.Repositories.FileTypeRepository
   name: FileTypeRepository
   href: api/CG.Blue.Data.Repositories.FileTypeRepository.html
@@ -1074,19 +1139,45 @@ references:
   commentId: F:CG.Blue.Directors.ContentDirector._mimeTypeManager
   fullName: CG.Blue.Directors.ContentDirector._mimeTypeManager
   nameWithType: ContentDirector._mimeTypeManager
-- uid: CG.Blue.Directors.ContentDirector.ImportAsync(Stream,System.String,System.String,System.String,CancellationToken)
-  name: ImportAsync(Stream, String, String, String, CancellationToken)
-  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_ImportAsync_Stream_System_String_System_String_System_String_CancellationToken_
-  commentId: M:CG.Blue.Directors.ContentDirector.ImportAsync(Stream,System.String,System.String,System.String,CancellationToken)
-  fullName: CG.Blue.Directors.ContentDirector.ImportAsync(Stream, System.String, System.String, System.String, CancellationToken)
-  nameWithType: ContentDirector.ImportAsync(Stream, String, String, String, CancellationToken)
-- uid: CG.Blue.Directors.ContentDirector.ImportAsync*
-  name: ImportAsync
-  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_ImportAsync_
-  commentId: Overload:CG.Blue.Directors.ContentDirector.ImportAsync
+- uid: CG.Blue.Directors.ContentDirector.CreateAsync(Stream,System.String,System.String,System.String,CancellationToken)
+  name: CreateAsync(Stream, String, String, String, CancellationToken)
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_CreateAsync_Stream_System_String_System_String_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.ContentDirector.CreateAsync(Stream,System.String,System.String,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.ContentDirector.CreateAsync(Stream, System.String, System.String, System.String, CancellationToken)
+  nameWithType: ContentDirector.CreateAsync(Stream, String, String, String, CancellationToken)
+- uid: CG.Blue.Directors.ContentDirector.CreateAsync*
+  name: CreateAsync
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_CreateAsync_
+  commentId: Overload:CG.Blue.Directors.ContentDirector.CreateAsync
   isSpec: "True"
-  fullName: CG.Blue.Directors.ContentDirector.ImportAsync
-  nameWithType: ContentDirector.ImportAsync
+  fullName: CG.Blue.Directors.ContentDirector.CreateAsync
+  nameWithType: ContentDirector.CreateAsync
+- uid: CG.Blue.Directors.ContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  name: FindBitsByIdAsync(Guid, String, CancellationToken)
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.ContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.ContentDirector.FindBitsByIdAsync(Guid, System.String, CancellationToken)
+  nameWithType: ContentDirector.FindBitsByIdAsync(Guid, String, CancellationToken)
+- uid: CG.Blue.Directors.ContentDirector.FindBitsByIdAsync*
+  name: FindBitsByIdAsync
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_FindBitsByIdAsync_
+  commentId: Overload:CG.Blue.Directors.ContentDirector.FindBitsByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.ContentDirector.FindBitsByIdAsync
+  nameWithType: ContentDirector.FindBitsByIdAsync
+- uid: CG.Blue.Directors.ContentDirector.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Directors.ContentDirector.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Directors.ContentDirector.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: ContentDirector.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Directors.ContentDirector.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_FindByIdAsync_
+  commentId: Overload:CG.Blue.Directors.ContentDirector.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.ContentDirector.FindByIdAsync
+  nameWithType: ContentDirector.FindByIdAsync
 - uid: CG.Blue.Directors.DirectorException
   name: DirectorException
   href: api/CG.Blue.Directors.DirectorException.html
@@ -1130,19 +1221,45 @@ references:
   commentId: T:CG.Blue.Directors.IContentDirector
   fullName: CG.Blue.Directors.IContentDirector
   nameWithType: IContentDirector
-- uid: CG.Blue.Directors.IContentDirector.ImportAsync(Stream,System.String,System.String,System.String,CancellationToken)
-  name: ImportAsync(Stream, String, String, String, CancellationToken)
-  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_ImportAsync_Stream_System_String_System_String_System_String_CancellationToken_
-  commentId: M:CG.Blue.Directors.IContentDirector.ImportAsync(Stream,System.String,System.String,System.String,CancellationToken)
-  fullName: CG.Blue.Directors.IContentDirector.ImportAsync(Stream, System.String, System.String, System.String, CancellationToken)
-  nameWithType: IContentDirector.ImportAsync(Stream, String, String, String, CancellationToken)
-- uid: CG.Blue.Directors.IContentDirector.ImportAsync*
-  name: ImportAsync
-  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_ImportAsync_
-  commentId: Overload:CG.Blue.Directors.IContentDirector.ImportAsync
+- uid: CG.Blue.Directors.IContentDirector.CreateAsync(Stream,System.String,System.String,System.String,CancellationToken)
+  name: CreateAsync(Stream, String, String, String, CancellationToken)
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_CreateAsync_Stream_System_String_System_String_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.IContentDirector.CreateAsync(Stream,System.String,System.String,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.IContentDirector.CreateAsync(Stream, System.String, System.String, System.String, CancellationToken)
+  nameWithType: IContentDirector.CreateAsync(Stream, String, String, String, CancellationToken)
+- uid: CG.Blue.Directors.IContentDirector.CreateAsync*
+  name: CreateAsync
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_CreateAsync_
+  commentId: Overload:CG.Blue.Directors.IContentDirector.CreateAsync
   isSpec: "True"
-  fullName: CG.Blue.Directors.IContentDirector.ImportAsync
-  nameWithType: IContentDirector.ImportAsync
+  fullName: CG.Blue.Directors.IContentDirector.CreateAsync
+  nameWithType: IContentDirector.CreateAsync
+- uid: CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  name: FindBitsByIdAsync(Guid, String, CancellationToken)
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid, System.String, CancellationToken)
+  nameWithType: IContentDirector.FindBitsByIdAsync(Guid, String, CancellationToken)
+- uid: CG.Blue.Directors.IContentDirector.FindBitsByIdAsync*
+  name: FindBitsByIdAsync
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_
+  commentId: Overload:CG.Blue.Directors.IContentDirector.FindBitsByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.IContentDirector.FindBitsByIdAsync
+  nameWithType: IContentDirector.FindBitsByIdAsync
+- uid: CG.Blue.Directors.IContentDirector.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Directors.IContentDirector.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Directors.IContentDirector.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: IContentDirector.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Directors.IContentDirector.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_FindByIdAsync_
+  commentId: Overload:CG.Blue.Directors.IContentDirector.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.IContentDirector.FindByIdAsync
+  nameWithType: IContentDirector.FindByIdAsync
 - uid: CG.Blue.Directors.ISeedDirector
   name: ISeedDirector
   href: api/CG.Blue.Directors.ISeedDirector.html
@@ -1563,19 +1680,19 @@ references:
   commentId: T:CG.Blue.IBlueApi
   fullName: CG.Blue.IBlueApi
   nameWithType: IBlueApi
-- uid: CG.Blue.IBlueApi.Imports
-  name: Imports
-  href: api/CG.Blue.IBlueApi.html#CG_Blue_IBlueApi_Imports
-  commentId: P:CG.Blue.IBlueApi.Imports
-  fullName: CG.Blue.IBlueApi.Imports
-  nameWithType: IBlueApi.Imports
-- uid: CG.Blue.IBlueApi.Imports*
-  name: Imports
-  href: api/CG.Blue.IBlueApi.html#CG_Blue_IBlueApi_Imports_
-  commentId: Overload:CG.Blue.IBlueApi.Imports
+- uid: CG.Blue.IBlueApi.Content
+  name: Content
+  href: api/CG.Blue.IBlueApi.html#CG_Blue_IBlueApi_Content
+  commentId: P:CG.Blue.IBlueApi.Content
+  fullName: CG.Blue.IBlueApi.Content
+  nameWithType: IBlueApi.Content
+- uid: CG.Blue.IBlueApi.Content*
+  name: Content
+  href: api/CG.Blue.IBlueApi.html#CG_Blue_IBlueApi_Content_
+  commentId: Overload:CG.Blue.IBlueApi.Content
   isSpec: "True"
-  fullName: CG.Blue.IBlueApi.Imports
-  nameWithType: IBlueApi.Imports
+  fullName: CG.Blue.IBlueApi.Content
+  nameWithType: IBlueApi.Content
 - uid: CG.Blue.IBlueApi.Support
   name: Support
   href: api/CG.Blue.IBlueApi.html#CG_Blue_IBlueApi_Support
@@ -1693,6 +1810,45 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Managers.BlobManager.DeleteAsync
   nameWithType: BlobManager.DeleteAsync
+- uid: CG.Blue.Managers.BlobManager.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  name: FindBitsByIdAsync(Guid, String, CancellationToken)
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_FindBitsByIdAsync_Guid_System_String_CancellationToken_
+  commentId: M:CG.Blue.Managers.BlobManager.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  fullName: CG.Blue.Managers.BlobManager.FindBitsByIdAsync(Guid, System.String, CancellationToken)
+  nameWithType: BlobManager.FindBitsByIdAsync(Guid, String, CancellationToken)
+- uid: CG.Blue.Managers.BlobManager.FindBitsByIdAsync*
+  name: FindBitsByIdAsync
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_FindBitsByIdAsync_
+  commentId: Overload:CG.Blue.Managers.BlobManager.FindBitsByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.BlobManager.FindBitsByIdAsync
+  nameWithType: BlobManager.FindBitsByIdAsync
+- uid: CG.Blue.Managers.BlobManager.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Managers.BlobManager.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Managers.BlobManager.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: BlobManager.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Managers.BlobManager.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_FindByIdAsync_
+  commentId: Overload:CG.Blue.Managers.BlobManager.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.BlobManager.FindByIdAsync
+  nameWithType: BlobManager.FindByIdAsync
+- uid: CG.Blue.Managers.BlobManager.UpdateAsync(BlobModel,System.String,CancellationToken)
+  name: UpdateAsync(BlobModel, String, CancellationToken)
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_UpdateAsync_BlobModel_System_String_CancellationToken_
+  commentId: M:CG.Blue.Managers.BlobManager.UpdateAsync(BlobModel,System.String,CancellationToken)
+  fullName: CG.Blue.Managers.BlobManager.UpdateAsync(BlobModel, System.String, CancellationToken)
+  nameWithType: BlobManager.UpdateAsync(BlobModel, String, CancellationToken)
+- uid: CG.Blue.Managers.BlobManager.UpdateAsync*
+  name: UpdateAsync
+  href: api/CG.Blue.Managers.BlobManager.html#CG_Blue_Managers_BlobManager_UpdateAsync_
+  commentId: Overload:CG.Blue.Managers.BlobManager.UpdateAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.BlobManager.UpdateAsync
+  nameWithType: BlobManager.UpdateAsync
 - uid: CG.Blue.Managers.FileTypeManager
   name: FileTypeManager
   href: api/CG.Blue.Managers.FileTypeManager.html
@@ -1863,6 +2019,45 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Managers.IBlobManager.DeleteAsync
   nameWithType: IBlobManager.DeleteAsync
+- uid: CG.Blue.Managers.IBlobManager.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  name: FindBitsByIdAsync(Guid, String, CancellationToken)
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_FindBitsByIdAsync_Guid_System_String_CancellationToken_
+  commentId: M:CG.Blue.Managers.IBlobManager.FindBitsByIdAsync(Guid,System.String,CancellationToken)
+  fullName: CG.Blue.Managers.IBlobManager.FindBitsByIdAsync(Guid, System.String, CancellationToken)
+  nameWithType: IBlobManager.FindBitsByIdAsync(Guid, String, CancellationToken)
+- uid: CG.Blue.Managers.IBlobManager.FindBitsByIdAsync*
+  name: FindBitsByIdAsync
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_FindBitsByIdAsync_
+  commentId: Overload:CG.Blue.Managers.IBlobManager.FindBitsByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.IBlobManager.FindBitsByIdAsync
+  nameWithType: IBlobManager.FindBitsByIdAsync
+- uid: CG.Blue.Managers.IBlobManager.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Managers.IBlobManager.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Managers.IBlobManager.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: IBlobManager.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Managers.IBlobManager.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_FindByIdAsync_
+  commentId: Overload:CG.Blue.Managers.IBlobManager.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.IBlobManager.FindByIdAsync
+  nameWithType: IBlobManager.FindByIdAsync
+- uid: CG.Blue.Managers.IBlobManager.UpdateAsync(BlobModel,System.String,CancellationToken)
+  name: UpdateAsync(BlobModel, String, CancellationToken)
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_UpdateAsync_BlobModel_System_String_CancellationToken_
+  commentId: M:CG.Blue.Managers.IBlobManager.UpdateAsync(BlobModel,System.String,CancellationToken)
+  fullName: CG.Blue.Managers.IBlobManager.UpdateAsync(BlobModel, System.String, CancellationToken)
+  nameWithType: IBlobManager.UpdateAsync(BlobModel, String, CancellationToken)
+- uid: CG.Blue.Managers.IBlobManager.UpdateAsync*
+  name: UpdateAsync
+  href: api/CG.Blue.Managers.IBlobManager.html#CG_Blue_Managers_IBlobManager_UpdateAsync_
+  commentId: Overload:CG.Blue.Managers.IBlobManager.UpdateAsync
+  isSpec: "True"
+  fullName: CG.Blue.Managers.IBlobManager.UpdateAsync
+  nameWithType: IBlobManager.UpdateAsync
 - uid: CG.Blue.Managers.IFileTypeManager
   name: IFileTypeManager
   href: api/CG.Blue.Managers.IFileTypeManager.html
@@ -2360,6 +2555,64 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Models.AuditedModelBase.LastUpdatedOnUtc
   nameWithType: AuditedModelBase.LastUpdatedOnUtc
+- uid: CG.Blue.Models.BlobBitsModel
+  name: BlobBitsModel
+  href: api/CG.Blue.Models.BlobBitsModel.html
+  commentId: T:CG.Blue.Models.BlobBitsModel
+  fullName: CG.Blue.Models.BlobBitsModel
+  nameWithType: BlobBitsModel
+- uid: CG.Blue.Models.BlobBitsModel.Id
+  name: Id
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_Id
+  commentId: P:CG.Blue.Models.BlobBitsModel.Id
+  fullName: CG.Blue.Models.BlobBitsModel.Id
+  nameWithType: BlobBitsModel.Id
+- uid: CG.Blue.Models.BlobBitsModel.Id*
+  name: Id
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_Id_
+  commentId: Overload:CG.Blue.Models.BlobBitsModel.Id
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobBitsModel.Id
+  nameWithType: BlobBitsModel.Id
+- uid: CG.Blue.Models.BlobBitsModel.MimeType
+  name: MimeType
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_MimeType
+  commentId: P:CG.Blue.Models.BlobBitsModel.MimeType
+  fullName: CG.Blue.Models.BlobBitsModel.MimeType
+  nameWithType: BlobBitsModel.MimeType
+- uid: CG.Blue.Models.BlobBitsModel.MimeType*
+  name: MimeType
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_MimeType_
+  commentId: Overload:CG.Blue.Models.BlobBitsModel.MimeType
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobBitsModel.MimeType
+  nameWithType: BlobBitsModel.MimeType
+- uid: CG.Blue.Models.BlobBitsModel.OriginalFileName
+  name: OriginalFileName
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_OriginalFileName
+  commentId: P:CG.Blue.Models.BlobBitsModel.OriginalFileName
+  fullName: CG.Blue.Models.BlobBitsModel.OriginalFileName
+  nameWithType: BlobBitsModel.OriginalFileName
+- uid: CG.Blue.Models.BlobBitsModel.OriginalFileName*
+  name: OriginalFileName
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_OriginalFileName_
+  commentId: Overload:CG.Blue.Models.BlobBitsModel.OriginalFileName
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobBitsModel.OriginalFileName
+  nameWithType: BlobBitsModel.OriginalFileName
+- uid: CG.Blue.Models.BlobBitsModel.Stream
+  name: Stream
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_Stream
+  commentId: P:CG.Blue.Models.BlobBitsModel.Stream
+  fullName: CG.Blue.Models.BlobBitsModel.Stream
+  nameWithType: BlobBitsModel.Stream
+- uid: CG.Blue.Models.BlobBitsModel.Stream*
+  name: Stream
+  href: api/CG.Blue.Models.BlobBitsModel.html#CG_Blue_Models_BlobBitsModel_Stream_
+  commentId: Overload:CG.Blue.Models.BlobBitsModel.Stream
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobBitsModel.Stream
+  nameWithType: BlobBitsModel.Stream
 - uid: CG.Blue.Models.BlobModel
   name: BlobModel
   href: api/CG.Blue.Models.BlobModel.html
@@ -2392,6 +2645,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Models.BlobModel.Id
   nameWithType: BlobModel.Id
+- uid: CG.Blue.Models.BlobModel.LastReadOnUtc
+  name: LastReadOnUtc
+  href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_LastReadOnUtc
+  commentId: P:CG.Blue.Models.BlobModel.LastReadOnUtc
+  fullName: CG.Blue.Models.BlobModel.LastReadOnUtc
+  nameWithType: BlobModel.LastReadOnUtc
+- uid: CG.Blue.Models.BlobModel.LastReadOnUtc*
+  name: LastReadOnUtc
+  href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_LastReadOnUtc_
+  commentId: Overload:CG.Blue.Models.BlobModel.LastReadOnUtc
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobModel.LastReadOnUtc
+  nameWithType: BlobModel.LastReadOnUtc
 - uid: CG.Blue.Models.BlobModel.Length
   name: Length
   href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_Length
@@ -2418,6 +2684,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Models.BlobModel.LocalFilePath
   nameWithType: BlobModel.LocalFilePath
+- uid: CG.Blue.Models.BlobModel.MimeType
+  name: MimeType
+  href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_MimeType
+  commentId: P:CG.Blue.Models.BlobModel.MimeType
+  fullName: CG.Blue.Models.BlobModel.MimeType
+  nameWithType: BlobModel.MimeType
+- uid: CG.Blue.Models.BlobModel.MimeType*
+  name: MimeType
+  href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_MimeType_
+  commentId: Overload:CG.Blue.Models.BlobModel.MimeType
+  isSpec: "True"
+  fullName: CG.Blue.Models.BlobModel.MimeType
+  nameWithType: BlobModel.MimeType
 - uid: CG.Blue.Models.BlobModel.OriginalFileName
   name: OriginalFileName
   href: api/CG.Blue.Models.BlobModel.html#CG_Blue_Models_BlobModel_OriginalFileName
@@ -2546,12 +2825,19 @@ references:
   commentId: T:CG.Blue.Options.BlobStorageOptions
   fullName: CG.Blue.Options.BlobStorageOptions
   nameWithType: BlobStorageOptions
-- uid: CG.Blue.Options.BlobStorageOptions._rootPath
-  name: _rootPath
-  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions__rootPath
-  commentId: F:CG.Blue.Options.BlobStorageOptions._rootPath
-  fullName: CG.Blue.Options.BlobStorageOptions._rootPath
-  nameWithType: BlobStorageOptions._rootPath
+- uid: CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup
+  name: DropLocalStorageOnStartup
+  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_DropLocalStorageOnStartup
+  commentId: P:CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup
+  fullName: CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup
+  nameWithType: BlobStorageOptions.DropLocalStorageOnStartup
+- uid: CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup*
+  name: DropLocalStorageOnStartup
+  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_DropLocalStorageOnStartup_
+  commentId: Overload:CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup
+  isSpec: "True"
+  fullName: CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup
+  nameWithType: BlobStorageOptions.DropLocalStorageOnStartup
 - uid: CG.Blue.Options.BlobStorageOptions.EncryptAtRest
   name: EncryptAtRest
   href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_EncryptAtRest
@@ -2578,19 +2864,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Options.BlobStorageOptions.FolderLevels
   nameWithType: BlobStorageOptions.FolderLevels
-- uid: CG.Blue.Options.BlobStorageOptions.RootPath
-  name: RootPath
-  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_RootPath
-  commentId: P:CG.Blue.Options.BlobStorageOptions.RootPath
-  fullName: CG.Blue.Options.BlobStorageOptions.RootPath
-  nameWithType: BlobStorageOptions.RootPath
-- uid: CG.Blue.Options.BlobStorageOptions.RootPath*
-  name: RootPath
-  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_RootPath_
-  commentId: Overload:CG.Blue.Options.BlobStorageOptions.RootPath
+- uid: CG.Blue.Options.BlobStorageOptions.LocalStoragePath
+  name: LocalStoragePath
+  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_LocalStoragePath
+  commentId: P:CG.Blue.Options.BlobStorageOptions.LocalStoragePath
+  fullName: CG.Blue.Options.BlobStorageOptions.LocalStoragePath
+  nameWithType: BlobStorageOptions.LocalStoragePath
+- uid: CG.Blue.Options.BlobStorageOptions.LocalStoragePath*
+  name: LocalStoragePath
+  href: api/CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_LocalStoragePath_
+  commentId: Overload:CG.Blue.Options.BlobStorageOptions.LocalStoragePath
   isSpec: "True"
-  fullName: CG.Blue.Options.BlobStorageOptions.RootPath
-  nameWithType: BlobStorageOptions.RootPath
+  fullName: CG.Blue.Options.BlobStorageOptions.LocalStoragePath
+  nameWithType: BlobStorageOptions.LocalStoragePath
 - uid: CG.Blue.Options.BlueBllOptions
   name: BlueBllOptions
   href: api/CG.Blue.Options.BlueBllOptions.html
@@ -2821,6 +3107,32 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Repositories.IBlobRepository.DeleteAsync
   nameWithType: IBlobRepository.DeleteAsync
+- uid: CG.Blue.Repositories.IBlobRepository.FindByIdAsync(Guid,CancellationToken)
+  name: FindByIdAsync(Guid, CancellationToken)
+  href: api/CG.Blue.Repositories.IBlobRepository.html#CG_Blue_Repositories_IBlobRepository_FindByIdAsync_Guid_CancellationToken_
+  commentId: M:CG.Blue.Repositories.IBlobRepository.FindByIdAsync(Guid,CancellationToken)
+  fullName: CG.Blue.Repositories.IBlobRepository.FindByIdAsync(Guid, CancellationToken)
+  nameWithType: IBlobRepository.FindByIdAsync(Guid, CancellationToken)
+- uid: CG.Blue.Repositories.IBlobRepository.FindByIdAsync*
+  name: FindByIdAsync
+  href: api/CG.Blue.Repositories.IBlobRepository.html#CG_Blue_Repositories_IBlobRepository_FindByIdAsync_
+  commentId: Overload:CG.Blue.Repositories.IBlobRepository.FindByIdAsync
+  isSpec: "True"
+  fullName: CG.Blue.Repositories.IBlobRepository.FindByIdAsync
+  nameWithType: IBlobRepository.FindByIdAsync
+- uid: CG.Blue.Repositories.IBlobRepository.UpdateAsync(BlobModel,CancellationToken)
+  name: UpdateAsync(BlobModel, CancellationToken)
+  href: api/CG.Blue.Repositories.IBlobRepository.html#CG_Blue_Repositories_IBlobRepository_UpdateAsync_BlobModel_CancellationToken_
+  commentId: M:CG.Blue.Repositories.IBlobRepository.UpdateAsync(BlobModel,CancellationToken)
+  fullName: CG.Blue.Repositories.IBlobRepository.UpdateAsync(BlobModel, CancellationToken)
+  nameWithType: IBlobRepository.UpdateAsync(BlobModel, CancellationToken)
+- uid: CG.Blue.Repositories.IBlobRepository.UpdateAsync*
+  name: UpdateAsync
+  href: api/CG.Blue.Repositories.IBlobRepository.html#CG_Blue_Repositories_IBlobRepository_UpdateAsync_
+  commentId: Overload:CG.Blue.Repositories.IBlobRepository.UpdateAsync
+  isSpec: "True"
+  fullName: CG.Blue.Repositories.IBlobRepository.UpdateAsync
+  nameWithType: IBlobRepository.UpdateAsync
 - uid: CG.Blue.Repositories.IFileTypeRepository
   name: IFileTypeRepository
   href: api/CG.Blue.Repositories.IFileTypeRepository.html
@@ -3206,6 +3518,32 @@ references:
   commentId: F:CG.Blue.V1.Controllers.BlobsController._mapper
   fullName: CG.Blue.V1.Controllers.BlobsController._mapper
   nameWithType: BlobsController._mapper
+- uid: CG.Blue.V1.Controllers.BlobsController.GetAsync(Guid)
+  name: GetAsync(Guid)
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_GetAsync_Guid_
+  commentId: M:CG.Blue.V1.Controllers.BlobsController.GetAsync(Guid)
+  fullName: CG.Blue.V1.Controllers.BlobsController.GetAsync(Guid)
+  nameWithType: BlobsController.GetAsync(Guid)
+- uid: CG.Blue.V1.Controllers.BlobsController.GetAsync*
+  name: GetAsync
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_GetAsync_
+  commentId: Overload:CG.Blue.V1.Controllers.BlobsController.GetAsync
+  isSpec: "True"
+  fullName: CG.Blue.V1.Controllers.BlobsController.GetAsync
+  nameWithType: BlobsController.GetAsync
+- uid: CG.Blue.V1.Controllers.BlobsController.GetBitsAsync(Guid)
+  name: GetBitsAsync(Guid)
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_GetBitsAsync_Guid_
+  commentId: M:CG.Blue.V1.Controllers.BlobsController.GetBitsAsync(Guid)
+  fullName: CG.Blue.V1.Controllers.BlobsController.GetBitsAsync(Guid)
+  nameWithType: BlobsController.GetBitsAsync(Guid)
+- uid: CG.Blue.V1.Controllers.BlobsController.GetBitsAsync*
+  name: GetBitsAsync
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_GetBitsAsync_
+  commentId: Overload:CG.Blue.V1.Controllers.BlobsController.GetBitsAsync
+  isSpec: "True"
+  fullName: CG.Blue.V1.Controllers.BlobsController.GetBitsAsync
+  nameWithType: BlobsController.GetBitsAsync
 - uid: CG.Blue.V1.Controllers.BlobsController.PostAsync(List{IFormFile})
   name: PostAsync(List<IFormFile>)
   href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_PostAsync_List_IFormFile__
@@ -3345,6 +3683,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.V1.Models.Blob.Id
   nameWithType: Blob.Id
+- uid: CG.Blue.V1.Models.Blob.LastReadOnUtc
+  name: LastReadOnUtc
+  href: api/CG.Blue.V1.Models.Blob.html#CG_Blue_V1_Models_Blob_LastReadOnUtc
+  commentId: P:CG.Blue.V1.Models.Blob.LastReadOnUtc
+  fullName: CG.Blue.V1.Models.Blob.LastReadOnUtc
+  nameWithType: Blob.LastReadOnUtc
+- uid: CG.Blue.V1.Models.Blob.LastReadOnUtc*
+  name: LastReadOnUtc
+  href: api/CG.Blue.V1.Models.Blob.html#CG_Blue_V1_Models_Blob_LastReadOnUtc_
+  commentId: Overload:CG.Blue.V1.Models.Blob.LastReadOnUtc
+  isSpec: "True"
+  fullName: CG.Blue.V1.Models.Blob.LastReadOnUtc
+  nameWithType: Blob.LastReadOnUtc
 - uid: CG.Blue.V1.Models.Blob.Length
   name: Length
   href: api/CG.Blue.V1.Models.Blob.html#CG_Blue_V1_Models_Blob_Length

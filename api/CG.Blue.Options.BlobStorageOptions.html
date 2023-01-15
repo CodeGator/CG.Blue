@@ -121,18 +121,18 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class BlobStorageOptions</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
   </h3>
-  <h4 id="CG_Blue_Options_BlobStorageOptions__rootPath" data-uid="CG.Blue.Options.BlobStorageOptions._rootPath">_rootPath</h4>
-  <div class="markdown level1 summary"><p>This field contains the backing for the <a class="xref" href="CG.Blue.Options.BlobStorageOptions.html#CG_Blue_Options_BlobStorageOptions_RootPath">RootPath</a>
-property.</p>
+  <a id="CG_Blue_Options_BlobStorageOptions_DropLocalStorageOnStartup_" data-uid="CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup*"></a>
+  <h4 id="CG_Blue_Options_BlobStorageOptions_DropLocalStorageOnStartup" data-uid="CG.Blue.Options.BlobStorageOptions.DropLocalStorageOnStartup">DropLocalStorageOnStartup</h4>
+  <div class="markdown level1 summary"><p>This property indicates</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected string _rootPath</code></pre>
+    <pre><code class="lang-csharp hljs">public bool DropLocalStorageOnStartup { get; set; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -142,13 +142,11 @@ property.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Boolean</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-  </h3>
   <a id="CG_Blue_Options_BlobStorageOptions_EncryptAtRest_" data-uid="CG.Blue.Options.BlobStorageOptions.EncryptAtRest*"></a>
   <h4 id="CG_Blue_Options_BlobStorageOptions_EncryptAtRest" data-uid="CG.Blue.Options.BlobStorageOptions.EncryptAtRest">EncryptAtRest</h4>
   <div class="markdown level1 summary"><p>This property indicates whether or not BLOBS should be encrypted
@@ -199,14 +197,14 @@ for each BLOB file, when they are imported.</p>
       </tr>
     </tbody>
   </table>
-  <a id="CG_Blue_Options_BlobStorageOptions_RootPath_" data-uid="CG.Blue.Options.BlobStorageOptions.RootPath*"></a>
-  <h4 id="CG_Blue_Options_BlobStorageOptions_RootPath" data-uid="CG.Blue.Options.BlobStorageOptions.RootPath">RootPath</h4>
-  <div class="markdown level1 summary"><p>This property contains the root of the BLOB storage tree.</p>
+  <a id="CG_Blue_Options_BlobStorageOptions_LocalStoragePath_" data-uid="CG.Blue.Options.BlobStorageOptions.LocalStoragePath*"></a>
+  <h4 id="CG_Blue_Options_BlobStorageOptions_LocalStoragePath" data-uid="CG.Blue.Options.BlobStorageOptions.LocalStoragePath">LocalStoragePath</h4>
+  <div class="markdown level1 summary"><p>This property contains the path to the local storage tree.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string RootPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string LocalStoragePath { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

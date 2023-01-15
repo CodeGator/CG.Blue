@@ -95,14 +95,14 @@ digital content.</p>
   </div>
   <h3 id="methods">Methods
   </h3>
-  <a id="CG_Blue_Directors_IContentDirector_ImportAsync_" data-uid="CG.Blue.Directors.IContentDirector.ImportAsync*"></a>
-  <h4 id="CG_Blue_Directors_IContentDirector_ImportAsync_Stream_System_String_System_String_System_String_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.ImportAsync(Stream,System.String,System.String,System.String,CancellationToken)">ImportAsync(Stream, String, String, String, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>This method imports the given stream.</p>
+  <a id="CG_Blue_Directors_IContentDirector_CreateAsync_" data-uid="CG.Blue.Directors.IContentDirector.CreateAsync*"></a>
+  <h4 id="CG_Blue_Directors_IContentDirector_CreateAsync_Stream_System_String_System_String_System_String_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.CreateAsync(Stream,System.String,System.String,System.String,CancellationToken)">CreateAsync(Stream, String, String, String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>This method creates a BLOB from the given stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;BlobModel&gt; ImportAsync(Stream stream, string fileName, string mimeType, string userName, CancellationToken cancellationToken = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;BlobModel&gt; CreateAsync(Stream stream, string fileName, string mimeType, string userName, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -161,6 +161,168 @@ for the lifetime of the method.</p>
         <td><span class="xref">Task</span>&lt;<span class="xref">BlobModel</span>&gt;</td>
         <td><p>A task to perform the operation that returns the newly created
 <see cref="!:BlobModel"></see> object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CG.Blue.Directors.DirectorException.html">DirectorException</a></td>
+        <td><p>This exception is thrown whenever the
+director fails to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_" data-uid="CG.Blue.Directors.IContentDirector.FindBitsByIdAsync*"></a>
+  <h4 id="CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)">FindBitsByIdAsync(Guid, String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>This method searches for BLOB bits, using the given identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;BlobBitsModel?&gt; FindBitsByIdAsync(Guid id, string userName, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Guid</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The identifier to use for the operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userName</span></td>
+        <td><p>The user name of the person performing the
+operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that is monitored
+for the lifetime of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Nullable</span>&lt;<span class="xref">BlobBitsModel</span>&gt;&gt;</td>
+        <td><p>A task to perform the operation that returns the matching
+<see cref="!:BlobBitsModel"></see> object, if a match was found, or <code>NULL</code>
+otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CG.Blue.Directors.DirectorException.html">DirectorException</a></td>
+        <td><p>This exception is thrown whenever the
+director fails to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="CG_Blue_Directors_IContentDirector_FindByIdAsync_" data-uid="CG.Blue.Directors.IContentDirector.FindByIdAsync*"></a>
+  <h4 id="CG_Blue_Directors_IContentDirector_FindByIdAsync_Guid_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.FindByIdAsync(Guid,CancellationToken)">FindByIdAsync(Guid, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>This method searches for BLOB meta-data, using the given identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;BlobModel?&gt; FindByIdAsync(Guid id, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Guid</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The identifier to use for the operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that is monitored
+for the lifetime of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Nullable</span>&lt;<span class="xref">BlobModel</span>&gt;&gt;</td>
+        <td><p>A task to perform the operation that returns the matching
+<see cref="!:BlobModel"></see> object, if a match was found, or <code>NULL</code>
+otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CG.Blue.Directors.DirectorException.html">DirectorException</a></td>
+        <td><p>This exception is thrown whenever the
+director fails to complete the operation.</p>
 </td>
       </tr>
     </tbody>

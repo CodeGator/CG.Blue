@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.BlueApi.html",
-          "hash": "UKMl2YsdcF33cjRO8RlsQxaD4R+OiYqeoTDK0uu5LnM="
+          "hash": "B822quoasjfhXpvoEDhRCHjdh8UkLpmiSo8iYUAobAg="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.Entities.BlobEntity.html",
-          "hash": "Mzq6kN56QAJWXdqWSCJVLleArKHElx19zwMLjzXVPUU="
+          "hash": "4lRjY/Bz00/PUSUhXKHmPEhk/tiJ1Teg8rZtXWdHSQc="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.Repositories.BlobRepository.html",
-          "hash": "hMA17EuUsy6D2WA9+WopKDq90FkYxsPWAbFaNxoGNFg="
+          "hash": "8V6jbcH/NcJk3bz7P1ipf+ysYNdER8LTcvp5Ez7Jeh4="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.Repositories.FileTypeRepository.html",
-          "hash": "b7Ru82uIiXFtODVg+BcOk5GNoUBUSqoCFDJESzY77mQ="
+          "hash": "kHHBUSJ1ir/vZzip1zFSc5JBX3STMHpsBu7520ST2ho="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.Repositories.MimeTypeRepository.html",
-          "hash": "TgXT23IB5lNNbY8x4RCy9A2NUdVFnAwUNDfzI9nfF5c="
+          "hash": "izRYA6usuQvn3VPciMlPWgU4qFWCMHlm8COKfKGY5Zw="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.SqlServer.Migrations.InitialCreate.html",
-          "hash": "yle2QKpPpFaJw+qvidnja1owXyLBwu3tx6bushqfLLU="
+          "hash": "OD+2OHTUDXv7/CiFzXXLqbtivNw1cERvTx6Og2mV5zY="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Data.Sqlite.Migrations.InitialCreate.html",
-          "hash": "y3apHhwWPOh5lgeR5Zjkx733Q+rZeqfoAhetulA7LVM="
+          "hash": "cf81WcOpjfotaQzx609BnSTwnseAe7r+yzjDG7zM5wg="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Directors.ContentDirector.html",
-          "hash": "fIoM0DQdpXSQDqhwivgn4wXJVDdyStHsr3tWbvwSS4c="
+          "hash": "OpPVJY2hDgSKi9onOINdaxvK9efG3LlCnNxSNZoNw70="
         }
       },
       "is_incremental": false,
@@ -366,7 +366,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Directors.IContentDirector.html",
-          "hash": "wWfuuCMJl81fYHAww/LLViqV8QWfFbJSI8X52dNgv/k="
+          "hash": "ZxM3syi5oFlXT6W6BJM60pmE9GVGz3gl/Za0pT1aNYw="
         }
       },
       "is_incremental": false,
@@ -582,7 +582,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.IBlueApi.html",
-          "hash": "zNMjvYNjnRS1Qs5vdbhPqACoUoqtHX69xYfwvm9sWXI="
+          "hash": "xJN1BN00ZYnjqtuD7CMC8gjlNTtX3RjpA/q9u9lDsHk="
         }
       },
       "is_incremental": false,
@@ -594,7 +594,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.BlobManager.html",
-          "hash": "OCiLvadTtygL1ZQqXBMZ4mf2uigB4akznU6eVCtIT3E="
+          "hash": "i3qyavtae4axzPA6vHCT6O51pdrYp42dcdvNIW9IvSk="
         }
       },
       "is_incremental": false,
@@ -606,7 +606,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.FileTypeManager.html",
-          "hash": "3bBF0s/bl9PHXM588e2f4wbsFVXQew0t2oiUkzJO6Ps="
+          "hash": "KpWeW8dwaPScEN6o4GFERgWqRn32e8pHTcC8s1PW5Hk="
         }
       },
       "is_incremental": false,
@@ -618,7 +618,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.IBlobManager.html",
-          "hash": "XlJoeEYmcR27qjvONEfVPTcRFOuefckO/1y+0VRAlyw="
+          "hash": "QXv3/cAxwta2xgC397oms296EAr6HzmBun/hwVAeouw="
         }
       },
       "is_incremental": false,
@@ -630,7 +630,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.IFileTypeManager.html",
-          "hash": "N35Tx6qWz7SZYyRdlk4Z8RdXnJ6nC959tJ7J4HiywZA="
+          "hash": "ox80wB6DELz9coxQ/ir9eiB7kxLMpfufFPnOnYKIcvo="
         }
       },
       "is_incremental": false,
@@ -642,7 +642,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.IMimeTypeManager.html",
-          "hash": "UiIEELuNCurIwZCIBviHBg3Y+q9TWV6Obz8WDuC2MN8="
+          "hash": "Fi4nQoOVL34u6bwFJxNav8X2ldzMAgjRNc+BWrSN8iQ="
         }
       },
       "is_incremental": false,
@@ -666,7 +666,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Managers.MimeTypeManager.html",
-          "hash": "CcHUvMSDbBt9yXDMCrqo0+D104AErGr8Z8KjVsyKIcw="
+          "hash": "XxPTSX1kHASQu4hCofKexKbLjSd2az/f8ReDpfD9zQw="
         }
       },
       "is_incremental": false,
@@ -698,11 +698,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/CG.Blue.Models.BlobBitsModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/CG.Blue.Models.BlobBitsModel.html",
+          "hash": "GI0V5FkjY7c5u6UThtRzdxS2w0AMoPUOaEqUqT3xgMA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/CG.Blue.Models.BlobModel.yml",
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Models.BlobModel.html",
-          "hash": "URH/Dw9lqa4jPBBnQoqUGXouB5q/u4cbROh88e813LA="
+          "hash": "vG0P/3D/SNs1AycxgiBI+uyE9gBOGTW77Aw3mTg1nPI="
         }
       },
       "is_incremental": false,
@@ -726,7 +738,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Models.MimeTypeModel.html",
-          "hash": "83rRC6pvkJfcHQWr+M1ahCFvfS/W99WfcwoTqPQhO3A="
+          "hash": "wvdC8tsP62l5jgwH4ZLQBpz0tFxT6WKrbEEWRGfv1n8="
         }
       },
       "is_incremental": false,
@@ -738,7 +750,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Models.html",
-          "hash": "NZ+9Tcr9FD4MDHViH9CSQG8fGl3tYygO3gxjub7l4T8="
+          "hash": "FHPzKwAnFoQsGkvwgPdATb9P9Yd4865RC5lWIpJuQAc="
         }
       },
       "is_incremental": false,
@@ -750,7 +762,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Options.BlobStorageOptions.html",
-          "hash": "elIl7rXfEKGXE1aD+vyI6uTMpoGTRDNAufKb3POQZ/k="
+          "hash": "STFU75aZsNDvZQtZyjKfimDavPkOpvvoiyXUnClObHU="
         }
       },
       "is_incremental": false,
@@ -822,7 +834,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Repositories.IBlobRepository.html",
-          "hash": "+R58Rg8st6I6Lu7C9G1N/qisMneN8cf79O0SkRKNEdM="
+          "hash": "VJNV6WLoHBYeIR0IVHdX0ce+Z/NB/ZVB9C9qQphoN6I="
         }
       },
       "is_incremental": false,
@@ -834,7 +846,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Repositories.IFileTypeRepository.html",
-          "hash": "33NwK8xRFgR3C8VgQwppBACoA8rtyzm9LPwmX17puyQ="
+          "hash": "zjjL0gv+q/f8pe/j919ttS0q4IpGSp8FZLwh9EM6d8Y="
         }
       },
       "is_incremental": false,
@@ -846,7 +858,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.Repositories.IMimeTypeRepository.html",
-          "hash": "NHu4vuyof7QmUuj27nM+BA71tQhp0W7UCCt9aCAozSY="
+          "hash": "LIkyXaepTZ1iVdXI84LLTrQ3IzJOVFt5oGGHjv8oBZ4="
         }
       },
       "is_incremental": false,
@@ -918,7 +930,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.V1.Controllers.BlobsController.html",
-          "hash": "WnjUOyflhU0W8wVQQJozp++qSbmPjD5HdTX40ywGHJc="
+          "hash": "N+zUHciAOI6O5xURTc8Ql7tMbqdjkpWy9jagyytZDWg="
         }
       },
       "is_incremental": false,
@@ -954,7 +966,7 @@
       "output": {
         ".html": {
           "relative_path": "api/CG.Blue.V1.Models.Blob.html",
-          "hash": "mOzuaCocbSFYDZxP/igjTbU7WdBqwrDQJLyGeUI8ick="
+          "hash": "hwv2hxMOosi6fCjGtXSRaHtih50dBUKAzOHLtvJEMsU="
         }
       },
       "is_incremental": false,
@@ -1158,7 +1170,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "AAQYxzCVfcaWKkVsj3F9ZXu9qD1LfAFPHZZW3pN8WBU="
+          "hash": "65cDDGAgW64Hnu37X7Zakqs2Kj4RSyOhAmP+Z9vLpAA="
         }
       },
       "is_incremental": false,
@@ -1277,7 +1289,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 95,
+          "total_file_count": 96,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

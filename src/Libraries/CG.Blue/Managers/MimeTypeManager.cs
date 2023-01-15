@@ -532,7 +532,7 @@ internal class MimeTypeManager : IMimeTypeManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<MimeTypeModel> UpdateAsync(
+    public virtual async Task<MimeTypeModel?> UpdateAsync(
         MimeTypeModel mimeType,
         string userName,
         CancellationToken cancellationToken = default
@@ -567,10 +567,13 @@ internal class MimeTypeManager : IMimeTypeManager
                 );
 
             // Perform the operation.
-            return await _mimeTypeRepository.UpdateAsync(
+            var updatedMimeType = await _mimeTypeRepository.UpdateAsync(
                 mimeType,
                 cancellationToken
                 ).ConfigureAwait(false);
+
+            // Return the results.
+            return updatedMimeType; 
         }
         catch (Exception ex)
         {

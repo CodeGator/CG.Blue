@@ -71,8 +71,18 @@ internal class BlobEntityMap : AuditedEntityMapBase<BlobEntity>
             .IsRequired();
 
         // Setup the column.
+        builder.Property(e => e.LastReadOnUtc);
+
+        // Setup the column.
         builder.Property(e => e.Length)
             .IsRequired();
+
+        // Setup the relationship
+        _modelBuilder.Entity<BlobEntity>()
+            .HasOne(e => e.MimeType)
+            .WithMany()
+            .HasForeignKey(e => e.MimeTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // Setup the index.
         builder.HasIndex(e => new
@@ -80,7 +90,9 @@ internal class BlobEntityMap : AuditedEntityMapBase<BlobEntity>
             e.Length,
             e.EncryptedAtRest,
             e.LocalFilePath,
-            e.OriginalFileName
+            e.OriginalFileName,
+            e.LastReadOnUtc,
+            e.MimeTypeId
         },
         "IX_Blobs"
         );

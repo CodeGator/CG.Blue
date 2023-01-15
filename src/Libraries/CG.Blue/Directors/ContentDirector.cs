@@ -70,7 +70,7 @@ public class ContentDirector : IContentDirector
     #region Public methods
 
     /// <inheritdoc/>
-    public virtual async Task<BlobModel> ImportAsync(
+    public virtual async Task<BlobModel> CreateAsync(
         Stream stream,
         string fileName,
         string mimeType,
@@ -156,12 +156,96 @@ public class ContentDirector : IContentDirector
             // Log what happened.
             _logger.LogError(
                 ex,
-                "Failed to import a BLOB!"
+                "Failed to create a BLOB!"
                 );
 
             // Provider better context.
             throw new DirectorException(
-                message: $"The director failed to import a BLOB!",
+                message: $"The director failed to create a BLOB!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<BlobModel?> FindByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfEmptyGuid(id, nameof(id));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Looking for matching BLOB meta-data"
+                );
+
+            // Look for matching BLOB meta-data.
+            var blobMetaData = await _blobManager.FindByIdAsync(
+                id,
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return blobMetaData;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for BLOB meta-data by id!"
+                );
+
+            // Provider better context.
+            throw new DirectorException(
+                message: $"The director failed to search for BLOB meta-data by id!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<BlobBitsModel?> FindBitsByIdAsync(
+        Guid id,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfEmptyGuid(id, nameof(id))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Look for matching BLOB bits.
+            var blobBits = await _blobManager.FindBitsByIdAsync(
+                id,
+                userName,
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return blobBits;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for BLOB bits by id!"
+                );
+
+            // Provider better context.
+            throw new DirectorException(
+                message: $"The director failed to search for BLOB bits by id!",
                 innerException: ex
                 );
         }

@@ -38,6 +38,9 @@ namespace CG.Blue.Data.SqlServer.Migrations
                     b.Property<bool>("EncryptedAtRest")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("LastReadOnUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LastUpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -53,6 +56,9 @@ namespace CG.Blue.Data.SqlServer.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(260)");
 
+                    b.Property<int?>("MimeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("OriginalFileName")
                         .IsRequired()
                         .HasMaxLength(260)
@@ -61,7 +67,9 @@ namespace CG.Blue.Data.SqlServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName" }, "IX_Blobs");
+                    b.HasIndex("MimeTypeId");
+
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName", "LastReadOnUtc", "MimeTypeId" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });
@@ -144,6 +152,16 @@ namespace CG.Blue.Data.SqlServer.Migrations
                         .IsUnique();
 
                     b.ToTable("MimeTypes", "Blue");
+                });
+
+            modelBuilder.Entity("CG.Blue.Data.Entities.BlobEntity", b =>
+                {
+                    b.HasOne("CG.Blue.Data.Entities.MimeTypeEntity", "MimeType")
+                        .WithMany()
+                        .HasForeignKey("MimeTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("MimeType");
                 });
 
             modelBuilder.Entity("CG.Blue.Data.Entities.FileTypeEntity", b =>

@@ -193,7 +193,7 @@ public interface IMimeTypeManager
     /// or more arguments are missing, or invalid.</exception>
     /// <exception cref="ManagerException">This exception is thrown whenever the
     /// manager fails to complete the operation.</exception>
-    Task<MimeTypeModel> UpdateAsync(
+    Task<MimeTypeModel?> UpdateAsync(
         MimeTypeModel mimeType,
         string userName,
         CancellationToken cancellationToken = default

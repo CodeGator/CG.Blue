@@ -40,5 +40,10 @@ public class Blob
     /// </summary>
     public DateTime CreatedOnUtc { get; set; }
 
+    /// <summary>
+    /// This property contains the date/time when the BLOB was last read.
+    /// </summary>
+    public DateTime? LastReadOnUtc { get; set; }
+
     #endregion
 }

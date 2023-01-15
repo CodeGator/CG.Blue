@@ -1,4 +1,7 @@
 ﻿
+using System.IO;
+using System.IO.Pipelines;
+
 namespace CG.Blue.V1.Controllers;
 
 /// <summary>
@@ -70,6 +73,142 @@ public class BlobsController : ControllerBase
     #region Public methods
 
     /// <summary>
+    /// This method gets the bits for the matching <see cref="Blob"/> object, 
+    /// if one is found.
+    /// </summary>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
+    [HttpGet("ById/{id}/Bits")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public virtual async Task<IActionResult> GetBitsAsync(
+        Guid id
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Starting {name} method",
+                nameof(GetAsync)
+                );
+
+            // Sanity check the model state.
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            // Look for the BLOB bits.
+            var blobBits = await _blueApi.Content.FindBitsByIdAsync(
+                id,
+                User.Identity?.Name ?? "anonymous"
+                );
+
+            // Did we fail?
+            if (blobBits is null)
+            {
+                return NotFound();
+            }
+
+            // Return the results.
+            return File(
+                blobBits.Stream, 
+                blobBits.MimeType, 
+                blobBits.OriginalFileName
+                );
+        }
+        catch (Exception ex)
+        {
+            // Log the error in detail.
+            _logger.LogError(
+                ex,
+                "Failed to search for BLOB bits by id!"
+                );
+
+            // Return an overview of the problem.
+            return Problem(
+                statusCode: StatusCodes.Status500InternalServerError,
+                detail: "The controller failed to search for BLOB " +
+                "bits by id!"
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <summary>
+    /// This method gets a matching <see cref="Blob"/> object, if one is 
+    /// found.
+    /// </summary>
+    /// <returns>A task to perform the operation that returns the results
+    /// of the action.</returns>
+    [HttpGet("ById/{id}")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public virtual async Task<IActionResult> GetAsync(
+        Guid id
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Starting {name} method",
+                nameof(GetAsync)
+                );
+
+            // Sanity check the model state.
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Looking for blob: {id}",
+                id
+                );
+
+            // Look for the matching BLOB.
+            var blob = await _blueApi.Content.FindByIdAsync(
+                id
+                ).ConfigureAwait(false);
+
+            // Did we fail?
+            if (blob is null)
+            {
+                return NotFound();
+            }
+
+            // Shape the return data.
+            var result = _mapper.Map<Blob>(blob);
+
+            // Return the results.
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            // Log the error in detail.
+            _logger.LogError(
+                ex,
+                "Failed to search for BLOB meta-data by id!"
+                );
+
+            // Return an overview of the problem.
+            return Problem(
+                statusCode: StatusCodes.Status500InternalServerError,
+                detail: "The controller failed to search for BLOB meta-data " +
+                "by id!"
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <summary>
     /// This method posts a file to the API.
     /// </summary>
     /// <returns>A task to perform the operation that returns the results
@@ -112,7 +251,7 @@ public class BlobsController : ControllerBase
                     );
 
                 // Import the BLOB.
-                var blob = await _blueApi.Imports.ImportAsync(
+                var blob = await _blueApi.Content.CreateAsync(
                     file.OpenReadStream(),
                     file.FileName,
                     file.ContentType,

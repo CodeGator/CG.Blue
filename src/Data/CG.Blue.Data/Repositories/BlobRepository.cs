@@ -173,6 +173,11 @@ internal class BlobRepository :
                 nameof(BlueDbContext)
                 );
 
+            // If we leave this property set EFCORE will try to add the object to
+            //   the data-context, which will fail because the mime type likely 
+            //   already exists. 
+            entity.MimeType = null;
+
             // Add the entity to the data-store.
             _dbContext.Blobs.Attach(entity);
 
@@ -190,6 +195,23 @@ internal class BlobRepository :
                 cancellationToken
                 ).ConfigureAwait(false);
 
+            // Look for the new entity (with mime type).
+            var newEntity = await _dbContext.Blobs.Where(x =>
+                x.Id == entity.Id
+                ).Include(x => x.MimeType)
+                .FirstOrDefaultAsync(
+                    cancellationToken
+                    ).ConfigureAwait(false);
+
+            // Should never happen, but, pffft, check it anyway.
+            if (newEntity is null)
+            {
+                // Panic!!
+                throw new KeyNotFoundException(
+                    $"The BLOB: {entity.Id} was not found!"
+                    );
+            }
+
             // Log what we are about to do.
             _logger.LogDebug(
                 "Converting a {entity} entity to a model",
@@ -198,7 +220,7 @@ internal class BlobRepository :
 
             // Convert the entity to a model.
             var result = _mapper.Map<BlobModel>(
-                entity
+                newEntity
                 );
 
             // Did we fail?
@@ -206,7 +228,7 @@ internal class BlobRepository :
             {
                 // Panic!!
                 throw new AutoMapperMappingException(
-                    $"Failed to map the {nameof(BlobModel)} entity to a model."
+                    $"Failed to map the {nameof(BlobEntity)} entity to a model."
                     );
             }
 
@@ -295,6 +317,174 @@ internal class BlobRepository :
             // Provider better context.
             throw new RepositoryException(
                 message: $"The repository failed to delete a BLOB!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<BlobModel?> FindByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "looking for the tracked {entity} instance from the {ctx} data-context",
+                nameof(BlobEntity),
+                nameof(BlueDbContext)
+                );
+
+            // Find the tracked entity (if any).
+            var entity = await _dbContext.Blobs.Where(x =>
+                x.Id == id
+                ).Include(x => x.MimeType)
+                .FirstOrDefaultAsync(
+                    cancellationToken
+                    );
+
+            // Did we fail?
+            if (entity is null)
+            {
+                return null; // Nothing to do!
+            }
+
+            // Convert the entity to a model.
+            var result = _mapper.Map<BlobModel>(
+                entity
+                );
+
+            // Did we fail?
+            if (result is null)
+            {
+                // Panic!!
+                throw new AutoMapperMappingException(
+                    $"Failed to map the {nameof(BlobEntity)} entity to a model."
+                    );
+            }
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for a BLOB by id!"
+                );
+
+            // Provider better context.
+            throw new RepositoryException(
+                message: $"The repository failed to search for a BLOB by id!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<BlobModel?> UpdateAsync(
+        BlobModel blob,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(blob, nameof(blob));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Looking for a matching {entity} entity in the {ctx} data-context.",
+                nameof(BlobModel),
+                nameof(BlueDbContext)
+                );
+
+            // Look for the given entity.
+            var entity = await _dbContext.Blobs.Where(x =>
+                x.Id == blob.Id
+                ).FirstOrDefaultAsync(
+                    cancellationToken
+                    ).ConfigureAwait(false);
+
+            // Did we fail?
+            if (entity is null)
+            {
+                // Panic!!
+                throw new KeyNotFoundException(
+                    $"The BLOB: {blob.Id} was not found!"
+                    );
+            }
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Updating a {entity} entity in the {ctx} data-context.",
+                nameof(FileTypeEntity),
+                nameof(BlueDbContext)
+                );
+
+            // Update the editable properties.
+            entity.LastReadOnUtc = blob.LastReadOnUtc;
+            entity.LastUpdatedOnUtc = blob.LastUpdatedOnUtc;
+            entity.LastUpdatedBy = blob.LastUpdatedBy ?? "anonymous";
+
+            // We never change these 'read only' properties.
+            _dbContext.Entry(entity).Property(x => x.Id).IsModified = false;
+            _dbContext.Entry(entity).Property(x => x.CreatedBy).IsModified = false;
+            _dbContext.Entry(entity).Property(x => x.CreatedOnUtc).IsModified = false;
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Saving changes to the {ctx} data-context",
+                nameof(BlueDbContext)
+                );
+
+            // Save the changes.
+            await _dbContext.SaveChangesAsync(
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Converting a {entity} entity to a model",
+                nameof(BlobEntity)
+                );
+
+            // Convert the entity to a model.
+            var result = _mapper.Map<BlobModel>(
+                entity
+                );
+
+            // Did we fail?
+            if (result is null)
+            {
+                // Panic!!
+                throw new AutoMapperMappingException(
+                    $"Failed to map the {nameof(BlobModel)} entity " +
+                    "to a model."
+                    );
+            }
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to update BLOB meta-data!"
+                );
+
+            // Provider better context.
+            throw new RepositoryException(
+                message: $"The repository failed to update BLOB meta-data!",
                 innerException: ex
                 );
         }

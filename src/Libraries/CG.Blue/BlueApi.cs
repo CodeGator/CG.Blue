@@ -14,9 +14,9 @@ internal class BlueApi : IBlueApi
     #region Fields
 
     /// <summary>
-    /// This field contains the import director for this api.
+    /// This field contains the content director for this api.
     /// </summary>
-    internal protected readonly IContentDirector _importDirector = null!;
+    internal protected readonly IContentDirector _contentDirector = null!;
 
     /// <summary>
     /// This field contains the support wrapper for this api.
@@ -35,7 +35,7 @@ internal class BlueApi : IBlueApi
     public virtual ISupportFacade Support => _supportFacade;
 
     /// <inheritdoc/>
-    public virtual IContentDirector Imports => _importDirector;
+    public virtual IContentDirector Content => _contentDirector;
 
     #endregion
 
@@ -49,19 +49,19 @@ internal class BlueApi : IBlueApi
     /// This constructor creates a new instance of the <see cref="BlueApi"/>
     /// class.
     /// </summary>
-    /// <param name="importDirector">The import director to use with this API.</param>
+    /// <param name="contentDirector">The content director to use with this API.</param>
     /// <param name="supportFacade">The support wrapper to use with this API.</param>
     public BlueApi(
-        IContentDirector importDirector,
+        IContentDirector contentDirector,
         ISupportFacade supportFacade        
         )
     {
         // Validate the parameters before attempting to use them.
-        Guard.Instance().ThrowIfNull(importDirector, nameof(importDirector))
+        Guard.Instance().ThrowIfNull(contentDirector, nameof(contentDirector))
             .ThrowIfNull(supportFacade, nameof(supportFacade));
 
         // Save the reference(s).
-        _importDirector = importDirector;
+        _contentDirector = contentDirector;
         _supportFacade = supportFacade;
     }
 

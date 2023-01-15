@@ -24,6 +24,11 @@ public class BlobEntity : AuditedEntityBase
     public string LocalFilePath { get; set; } = null!;
 
     /// <summary>
+    /// This property contains the original file name of the BLOB.
+    /// </summary>
+    public string OriginalFileName { get; set; } = null!;
+
+    /// <summary>
     /// This property contains the length, in bytes, of the BLOB.
     /// </summary>
     public long Length { get; set; }    

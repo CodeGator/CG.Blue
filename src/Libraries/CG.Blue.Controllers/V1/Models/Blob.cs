@@ -28,5 +28,17 @@ public class Blob
     /// </summary>
     public bool EncryptedAtRest { get; set; }
 
+    /// <summary>
+    /// This property contains the original file name of the BLOB.
+    /// </summary>
+    [Required]
+    [MaxLength(Globals.Models.Blobs.OriginalFileNameLength)]
+    public string OriginalFileName { get; set; } = null!;
+
+    /// <summary>
+    /// This property contains the date/time when the BLOB was created.
+    /// </summary>
+    public DateTime CreatedOnUtc { get; set; }
+
     #endregion
 }

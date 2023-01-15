@@ -9,8 +9,16 @@
       "Extensions": [ ".jpg", "jpeg" ]
     },
     {
+      "MimeType": "image/avif",
+      "Extensions": [ ".avif" ]
+    },
+    {
       "MimeType": "image/png",
       "Extensions": [ ".png" ]
+    },
+    {
+      "MimeType": "image/vnd.microsoft.icon",
+      "Extensions": [ ".ico" ]
     },
     {
       "MimeType": "image/tiff",
@@ -21,8 +29,20 @@
       "Extensions": [ ".bmp" ]
     },
     {
+      "MimeType": "image/svg+xml",
+      "Extensions": [ ".svg" ]
+    },
+    {
+      "MimeType": "video/x-msvideo",
+      "Extensions": [ ".avi" ]
+    },
+    {
       "MimeType": "video/mpg",
       "Extensions": [ ".mpg", ".mpeg", ".mpe" ]
+    },
+    {
+      "MimeType": "video/mp4",
+      "Extensions": [ ".mp4" ]
     },
     {
       "MimeType": "video/vnd.vivo",
@@ -41,12 +61,28 @@
       "Extensions": [ ".pdf" ]
     },
     {
+      "MimeType": "application/azw",
+      "Extensions": [ ".azw" ]
+    },
+    {
+      "MimeType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "Extensions": [ ".pptx" ]
+    },
+    {
+      "MimeType": "application/vnd.ms-powerpoint",
+      "Extensions": [ ".ppt" ]
+    },
+    {
       "MimeType": "application/postscript",
       "Extensions": [ ".ps", ".ai", ".eps" ]
     },
     {
       "MimeType": "text/plain",
       "Extensions": [ ".txt" ]
+    },
+    {
+      "MimeType": "text/js",
+      "Extensions": [ ".js" ]
     },
     {
       "MimeType": "text/richtext",
@@ -57,8 +93,24 @@
       "Extensions": [ ".htm", ".html" ]
     },
     {
+      "MimeType": "text/css",
+      "Extensions": [ ".css" ]
+    },
+    {
+      "MimeType": "text/csv",
+      "Extensions": [ ".csv" ]
+    },
+    {
       "MimeType": "application/json",
       "Extensions": [ ".json" ]
+    },
+    {
+      "MimeType": "application/msword",
+      "Extensions": [ ".doc" ]
+    },
+    {
+      "MimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "Extensions": [ ".docx" ]
     },
     {
       "MimeType": "application/xml",
@@ -69,6 +121,18 @@
       "Extensions": [ ".zip" ]
     },
     {
+      "MimeType": "application/x-bzip",
+      "Extensions": [ ".bzip" ]
+    },
+    {
+      "MimeType": "application/x-bzip2",
+      "Extensions": [ ".bzip2" ]
+    },
+    {
+      "MimeType": "application/x-cdf",
+      "Extensions": [ ".cda" ]
+    },
+    {
       "MimeType": "application/tar",
       "Extensions": [ ".tar" ]
     },
@@ -77,12 +141,24 @@
       "Extensions": [ ".gz" ]
     },
     {
+      "MimeType": "application/arc",
+      "Extensions": [ ".arc" ]
+    },
+    {
       "MimeType": "application/x-gtar",
       "Extensions": [ ".gtar" ]
     },
     {
       "MimeType": "audio/x-aiff",
       "Extensions": [ ".aiff" ]
+    },
+    {
+      "MimeType": "audio/aac",
+      "Extensions": [ ".aac" ]
+    },
+    {
+      "MimeType": "audio/mpeg",
+      "Extensions": [ ".mp3" ]
     },
     {
       "MimeType": "audio/basic",

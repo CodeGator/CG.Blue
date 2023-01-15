@@ -2,14 +2,16 @@
 namespace CG.Blue.Directors;
 
 /// <summary>
-/// This interface represents an object that performs import operations.
+/// This interface represents an object that performs operations related to
+/// digital content.
 /// </summary>
-public interface IImportDirector
+public interface IContentDirector
 {
     /// <summary>
     /// This method imports the given stream.
     /// </summary>
     /// <param name="stream">The stream to use for the operation.</param>
+    /// <param name="fileName">The file name to use for the operation.</param>
     /// <param name="mimeType">The mime type to use for the operation.</param>
     /// <param name="userName">The user name of the person performing the 
     /// operation.</param>
@@ -23,6 +25,7 @@ public interface IImportDirector
     /// manager fails to complete the operation.</exception>
     Task<BlobModel> ImportAsync(
         Stream stream,
+        string fileName,
         string mimeType,
         string userName,
         CancellationToken cancellationToken = default

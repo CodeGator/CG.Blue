@@ -1,4 +1,6 @@
 ﻿
+using CG.Blue.Models;
+
 namespace Microsoft.AspNetCore.Builder;
 
 /// <summary>
@@ -56,7 +58,7 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding support for problem details"
+            "Adding support for problem details for the controllers"
             );
 
         // Add problem details.
@@ -64,7 +66,7 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding support for API versioning"
+            "Adding support for API versioning for the controllers"
             );
 
         // Add API versioning.
@@ -80,7 +82,7 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding support for Swagger"
+            "Adding support for Swagger for the controllers"
             );
 
         // Add Swagger.
@@ -99,11 +101,32 @@ public static class WebApplicationBuilderExtensions002
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Adding support for Swagger configuration"
+            "Adding Swagger configuration for the controllers"
             );
 
-        // Add the configurator 3000 - now with contrast control!!!
+        // Add the swagger configuration
         webApplicationBuilder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfiguration>();
+
+        // Tell the world what we are about to do.
+        bootstrapLogger?.LogDebug(
+            "Wiring up the auto-mapper for the controllers"
+            );
+
+        // Wire up the auto-mapper.
+        webApplicationBuilder.Services.AddAutoMapper(cfg =>
+        {
+            // Wire up the conversion maps.
+            cfg.CreateMap<BlobModel, Blob>().ReverseMap();
+            cfg.CreateMap<MimeTypeModel, MimeType>()
+                .ForMember(
+                    dest => dest.Key,
+                    opt => opt.MapFrom(src => $"{src.Type}/{src.SubType}")
+                    ).ForMember(
+                        dest => dest.Extensions,
+                        opt => opt.MapFrom(src => src.FileTypes.Select(x => x.Extension))
+                    )
+                .ReverseMap();
+        });
 
         // Return the application builder.
         return webApplicationBuilder;

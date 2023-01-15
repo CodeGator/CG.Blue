@@ -21,6 +21,11 @@ public class MimeTypesController : ControllerBase
     internal protected readonly IBlueApi _blueApi = null!;
 
     /// <summary>
+    /// This field contains the auto mapper for this controller.
+    /// </summary>
+    internal protected readonly IMapper _mapper = null!;
+
+    /// <summary>
     /// This field contains the logger for this controller.
     /// </summary>
     internal protected readonly ILogger<MimeTypesController> _logger = null!;
@@ -37,18 +42,22 @@ public class MimeTypesController : ControllerBase
     /// This constructor creates a new instance of the <see cref="MimeTypesController"/>
     /// </summary>
     /// <param name="blueApi">The API to use with this controller.</param>
+    /// <param name="mapper">The auto mapper to use with this controller.</param>
     /// <param name="logger">The logger to use with this controller.</param>
     public MimeTypesController(
         IBlueApi blueApi,
+        IMapper mapper,
         ILogger<MimeTypesController> logger
         )
     {
         // Validate the parameters before attempting to use them.
         Guard.Instance().ThrowIfNull(blueApi, nameof(blueApi))
+            .ThrowIfNull(mapper, nameof(mapper))
             .ThrowIfNull(logger, nameof(logger));
 
         // Save the reference(s).
         _blueApi = blueApi;
+        _mapper = mapper;
         _logger = logger;
     }
 
@@ -94,11 +103,9 @@ public class MimeTypesController : ControllerBase
                 );
 
             // Convert the data.
-            var result = data.Select(x => new MimeType()
-            {
-                Key = $"{x.Type}/{x.SubType}",
-                Extensions = x.FileTypes.Select(x => x.Extension).ToList()
-            });
+            var result = data.Select(x => 
+                _mapper.Map<MimeType>(x)
+                );
 
             // Return the results.
             return Ok(result);
@@ -181,11 +188,9 @@ public class MimeTypesController : ControllerBase
                 );
 
             // Convert the data.
-            var result = data.Select(x => new MimeType()
-            {
-                Key = $"{x.Type}/{x.SubType}",
-                Extensions = x.FileTypes.Select(x => x.Extension).ToList()
-            });
+            var result = data.Select(x =>
+                _mapper.Map<MimeType>(x)
+                );
 
             // Return the results.
             return Ok(result);
@@ -255,11 +260,9 @@ public class MimeTypesController : ControllerBase
                 );
 
             // Convert the data.
-            var result = data.Select(x => new MimeType()
-            {
-                Key = $"{x.Type}/{x.SubType}",
-                Extensions = x.FileTypes.Select(x => x.Extension).ToList()
-            });
+            var result = data.Select(x =>
+                _mapper.Map<MimeType>(x)
+                );
 
             // Return the results.
             return Ok(result);

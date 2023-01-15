@@ -16,7 +16,7 @@ internal class BlueApi : IBlueApi
     /// <summary>
     /// This field contains the import director for this api.
     /// </summary>
-    internal protected readonly IImportDirector _importDirector = null!;
+    internal protected readonly IContentDirector _importDirector = null!;
 
     /// <summary>
     /// This field contains the support wrapper for this api.
@@ -35,7 +35,7 @@ internal class BlueApi : IBlueApi
     public virtual ISupportFacade Support => _supportFacade;
 
     /// <inheritdoc/>
-    public virtual IImportDirector Imports => _importDirector;
+    public virtual IContentDirector Imports => _importDirector;
 
     #endregion
 
@@ -52,7 +52,7 @@ internal class BlueApi : IBlueApi
     /// <param name="importDirector">The import director to use with this API.</param>
     /// <param name="supportFacade">The support wrapper to use with this API.</param>
     public BlueApi(
-        IImportDirector importDirector,
+        IContentDirector importDirector,
         ISupportFacade supportFacade        
         )
     {

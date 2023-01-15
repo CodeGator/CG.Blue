@@ -39,7 +39,7 @@ public static class WebApplicationBuilderExtensions004
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Wiring up the Blue repositories"
+            "Wiring up the Blue repositories for the DAL"
             );
 
         // Add the repositories
@@ -49,7 +49,7 @@ public static class WebApplicationBuilderExtensions004
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(
-            "Wiring up the auto-mapper"
+            "Wiring up the auto-mapper for the DAL"
             );
 
         // Wire up the auto-mapper.

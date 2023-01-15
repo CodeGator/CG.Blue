@@ -48,9 +48,15 @@ namespace CG.Blue.Data.Sqlite.Migrations
                         .IsUnicode(false)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasMaxLength(260)
+                        .IsUnicode(false)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });

@@ -13,9 +13,9 @@ public class BlueDbContext : DbContext
     #region Properties
 
     /// <summary>
-    /// This property contains the collection of BLOBs.
+    /// This property contains the collection of BLOB meta-data.
     /// </summary>
-    public virtual DbSet<BlobEntity> BlobTypes { get; set; } = null!;
+    public virtual DbSet<BlobEntity> Blobs { get; set; } = null!;
 
     /// <summary>
     /// This property contains the collection of file types.

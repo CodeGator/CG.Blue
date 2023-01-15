@@ -64,7 +64,7 @@ public static class WebApplicationBuilderExtensions001
             );
 
         // Add the directors.
-        webApplicationBuilder.Services.AddScoped<IImportDirector, ImportDirector>();
+        webApplicationBuilder.Services.AddScoped<IContentDirector, ContentDirector>();
 
         // Tell the world what we are about to do.
         bootstrapLogger?.LogDebug(

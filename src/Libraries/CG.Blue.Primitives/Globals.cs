@@ -22,6 +22,12 @@ public static class Globals
             /// property.
             /// </summary>
             public const int FilePathLength = 260;
+
+            /// <summary>
+            /// This constant represents the length of the <see cref="BlobModel.OriginalFileName"/> 
+            /// property.
+            /// </summary>
+            public const int OriginalFileNameLength = 260;
         }
 
         /// <summary>

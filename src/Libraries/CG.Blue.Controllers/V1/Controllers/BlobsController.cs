@@ -1,6 +1,4 @@
 ﻿
-using CG.Blue.Models;
-
 namespace CG.Blue.V1.Controllers;
 
 /// <summary>
@@ -23,6 +21,11 @@ public class BlobsController : ControllerBase
     internal protected readonly IBlueApi _blueApi = null!;
 
     /// <summary>
+    /// This field contains the auto mapper for this controller.
+    /// </summary>
+    internal protected readonly IMapper _mapper = null!;
+
+    /// <summary>
     /// This field contains the logger for this controller.
     /// </summary>
     internal protected readonly ILogger<BlobsController> _logger = null!;
@@ -39,18 +42,22 @@ public class BlobsController : ControllerBase
     /// This constructor creates a new instance of the <see cref="BlobsController"/>
     /// </summary>
     /// <param name="blueApi">The API to use with this controller.</param>
+    /// <param name="mapper">The auto mapper to use with this controller.</param>
     /// <param name="logger">The logger to use with this controller.</param>
     public BlobsController(
         IBlueApi blueApi,
+        IMapper mapper,
         ILogger<BlobsController> logger
         )
     {
         // Validate the parameters before attempting to use them.
         Guard.Instance().ThrowIfNull(blueApi, nameof(blueApi))
+            .ThrowIfNull(mapper, nameof(mapper))
             .ThrowIfNull(logger, nameof(logger));
 
         // Save the reference(s).
         _blueApi = blueApi;
+        _mapper = mapper;
         _logger = logger;
     }
 
@@ -107,6 +114,7 @@ public class BlobsController : ControllerBase
                 // Import the BLOB.
                 var blob = await _blueApi.Imports.ImportAsync(
                     file.OpenReadStream(),
+                    file.FileName,
                     file.ContentType,
                     User.Identity?.Name ?? "anonymous"
                     ).ConfigureAwait(false);
@@ -121,11 +129,9 @@ public class BlobsController : ControllerBase
                 );
 
             // Convert the data.
-            var result = blobs.Select(x => new Blob()
-            {
-                Id = x.Id,
-                EncryptedAtRest = x.EncryptedAtRest
-            });
+            var result = blobs.Select(x => 
+                _mapper.Map<Blob>(x)
+                );
 
             // Return the results.
             return Ok(result);

@@ -14,5 +14,5 @@ public interface IBlueApi
     /// <summary>
     /// This property contains an object that performs import operations.
     /// </summary>
-    IImportDirector Imports { get; }
+    IContentDirector Imports { get; }
 }

@@ -53,9 +53,15 @@ namespace CG.Blue.Data.SqlServer.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(260)");
 
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasMaxLength(260)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(260)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath" }, "IX_Blobs");
+                    b.HasIndex(new[] { "Length", "EncryptedAtRest", "LocalFilePath", "OriginalFileName" }, "IX_Blobs");
 
                     b.ToTable("Blobs", "Blue");
                 });

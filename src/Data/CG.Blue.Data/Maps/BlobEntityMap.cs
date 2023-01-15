@@ -61,6 +61,12 @@ internal class BlobEntityMap : AuditedEntityMapBase<BlobEntity>
             .IsRequired();
 
         // Setup the column.
+        builder.Property(e => e.OriginalFileName)
+            .HasMaxLength(Globals.Models.Blobs.OriginalFileNameLength)
+            .IsUnicode(false)
+            .IsRequired();
+
+        // Setup the column.
         builder.Property(e => e.EncryptedAtRest)
             .IsRequired();
 
@@ -73,7 +79,8 @@ internal class BlobEntityMap : AuditedEntityMapBase<BlobEntity>
         {
             e.Length,
             e.EncryptedAtRest,
-            e.LocalFilePath
+            e.LocalFilePath,
+            e.OriginalFileName
         },
         "IX_Blobs"
         );

@@ -2,10 +2,10 @@
 namespace CG.Blue.Directors;
 
 /// <summary>
-/// This class is a default implementation of the <see cref="IImportDirector"/>
+/// This class is a default implementation of the <see cref="IContentDirector"/>
 /// interface.
 /// </summary>
-public class ImportDirector : IImportDirector
+public class ContentDirector : IContentDirector
 {
     // *******************************************************************
     // Fields.
@@ -26,7 +26,7 @@ public class ImportDirector : IImportDirector
     /// <summary>
     /// This field contains the logger for this director.
     /// </summary>
-    internal protected readonly ILogger<IImportDirector> _logger = null!;
+    internal protected readonly ILogger<IContentDirector> _logger = null!;
 
     #endregion
 
@@ -37,17 +37,17 @@ public class ImportDirector : IImportDirector
     #region Constructors
 
     /// <summary>
-    /// This constructor creates a new instance of the <see cref="ImportDirector"/>
+    /// This constructor creates a new instance of the <see cref="ContentDirector"/>
     /// class.
     /// </summary>
     /// <param name="blobManager">The BLOB manager to use with this director.</param>
     /// <param name="mimeTypeManager">The mime type manager to use with 
     /// this director.</param>
     /// <param name="logger">The logger to use with this director.</param>
-    public ImportDirector(
+    public ContentDirector(
         IBlobManager blobManager,
         IMimeTypeManager mimeTypeManager,
-        ILogger<ImportDirector> logger
+        ILogger<ContentDirector> logger
         ) 
     {
         // Validate the parameters before attempting to use them.
@@ -72,6 +72,7 @@ public class ImportDirector : IImportDirector
     /// <inheritdoc/>
     public virtual async Task<BlobModel> ImportAsync(
         Stream stream,
+        string fileName,
         string mimeType,
         string userName,
         CancellationToken cancellationToken = default
@@ -79,6 +80,7 @@ public class ImportDirector : IImportDirector
     {
         // Validate the parameters before attempting to use them.
         Guard.Instance().ThrowIfNull(stream, nameof(stream))
+            .ThrowIfNullOrEmpty(fileName, nameof(fileName))
             .ThrowIfNullOrEmpty(mimeType, nameof(mimeType))
             .ThrowIfNullOrEmpty(userName, nameof(userName));
 
@@ -137,9 +139,10 @@ public class ImportDirector : IImportDirector
                 "Creating the BLOB"
                 );
 
-            // Create the BLOB.
+            // Create the BLOB's meta-data.
             var blob = await _blobManager.CreateAsync(
                 stream,
+                fileName,
                 mimeTypeMatch,
                 userName,
                 cancellationToken

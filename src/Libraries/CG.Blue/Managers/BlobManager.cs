@@ -1,6 +1,4 @@
 ﻿
-using CG.Cryptography;
-
 namespace CG.Blue.Managers;
 
 /// <summary>
@@ -28,7 +26,7 @@ internal class BlobManager : IBlobManager
     /// <summary>
     /// This field contains the repository for this manager.
     /// </summary>
-    internal protected readonly IBlobRepository _fileTypeRepository = null!;
+    internal protected readonly IBlobRepository _blobRepository = null!;
 
     /// <summary>
     /// This field contains the logger for this manager.
@@ -50,28 +48,28 @@ internal class BlobManager : IBlobManager
     /// <param name="bllOptions">The BLL options to use with this manager.</param>
     /// <param name="cryptographer">The cryptographer to use with this 
     /// manager.</param>
-    /// <param name="fileTypeRepository">The file type repository to use
-    /// with this manager.</param>
+    /// <param name="blobRepository">The BLOB repository to use with this 
+    /// manager.</param>
     /// <param name="logger">The logger to use with this manager.</param>
     /// <exception cref="ArgumentException">This exception is thrown whenever one
     /// or more arguments are missing, or invalid.</exception>
     public BlobManager(
         IOptions<BlueBllOptions> bllOptions,
         ICryptographer cryptographer,
-        IBlobRepository fileTypeRepository,
+        IBlobRepository blobRepository,
         ILogger<IBlobManager> logger
         )
     {
         // Validate the arguments before attempting to use them.
         Guard.Instance().ThrowIfNull(bllOptions, nameof(bllOptions))
             .ThrowIfNull(cryptographer, nameof(cryptographer))
-            .ThrowIfNull(fileTypeRepository, nameof(fileTypeRepository))
+            .ThrowIfNull(blobRepository, nameof(blobRepository))
             .ThrowIfNull(logger, nameof(logger));
 
         // Save the reference(s)
         _blobStorageOptions = bllOptions.Value.BlobStorage;
         _cryptographer = cryptographer;
-        _fileTypeRepository = fileTypeRepository;
+        _blobRepository = blobRepository;
         _logger = logger;
     }
 
@@ -84,8 +82,88 @@ internal class BlobManager : IBlobManager
     #region Public methods
 
     /// <inheritdoc/>
+    public virtual async Task<bool> AnyAsync(
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IBlobRepository.AnyAsync)
+                );
+
+            // Check the repository for the data.
+            var result = await _blobRepository.AnyAsync(
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results,
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to search for BLOBs!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to search for BLOBs!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task<long> CountAsync(
+        CancellationToken cancellationToken = default
+        )
+    {
+        try
+        {
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IBlobRepository.CountAsync)
+                );
+
+            // Perform the search.
+            var result = await _blobRepository.CountAsync(
+                cancellationToken
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return result;
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to count BLOBs!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to count BLOBs!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
     public virtual async Task<BlobModel> CreateAsync(
         Stream stream,
+        string fileName,
         MimeTypeModel mimeType,
         string userName,
         CancellationToken cancellationToken = default
@@ -93,6 +171,7 @@ internal class BlobManager : IBlobManager
     {
         // Validate the arguments before attempting to use them.
         Guard.Instance().ThrowIfNull(stream, nameof(stream))
+            .ThrowIfNull(fileName, nameof(fileName))
             .ThrowIfNull(mimeType, nameof(mimeType))
             .ThrowIfNullOrEmpty(userName, nameof(userName));
 
@@ -107,7 +186,10 @@ internal class BlobManager : IBlobManager
             // Create the BLOB model.
             var blob = new BlobModel()
             {
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                OriginalFileName = fileName,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedBy = userName
             };
 
             // Log what we are about to do.
@@ -251,10 +333,22 @@ internal class BlobManager : IBlobManager
                     fileStream,
                     cancellationToken
                     ).ConfigureAwait(false);
-            }            
+            }
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IBlobRepository.CreateAsync)
+                );
+
+            // Create the entity.
+            var result = await _blobRepository.CreateAsync(
+                blob,
+                cancellationToken
+                ).ConfigureAwait(false);
 
             // Return the results.
-            return blob;
+            return result;
         }
         catch (Exception ex)
         {
@@ -267,6 +361,59 @@ internal class BlobManager : IBlobManager
             // Provider better context.
             throw new ManagerException(
                 message: $"The manager failed to create a BLOB from a stream!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
+    public virtual async Task DeleteAsync(
+        BlobModel blob,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(blob, nameof(blob))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Updating the {name} model stats",
+                nameof(BlobModel)
+                );
+
+            // Ensure the stats are correct.
+            blob.LastUpdatedOnUtc = DateTime.UtcNow;
+            blob.LastUpdatedBy = userName;
+
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IBlobRepository.DeleteAsync)
+                );
+
+            // Perform the operation.
+            await _blobRepository.DeleteAsync(
+                blob,
+                cancellationToken
+                ).ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to delete a BLOB!"
+                );
+
+            // Provider better context.
+            throw new ManagerException(
+                message: $"The manager failed to delete a BLOB!",
                 innerException: ex
                 );
         }

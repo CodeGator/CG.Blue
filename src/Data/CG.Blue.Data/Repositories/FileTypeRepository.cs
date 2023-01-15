@@ -422,7 +422,7 @@ internal class FileTypeRepository :
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<FileTypeModel?> UpdateAsync(
+    public virtual async Task<FileTypeModel> UpdateAsync(
         FileTypeModel fileType,
         CancellationToken cancellationToken = default
         )

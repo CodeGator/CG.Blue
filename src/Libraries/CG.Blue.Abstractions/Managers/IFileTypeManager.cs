@@ -109,7 +109,7 @@ public interface IFileTypeManager
     /// or more arguments are missing, or invalid.</exception>
     /// <exception cref="ManagerException">This exception is thrown whenever the
     /// manager fails to complete the operation.</exception>
-    Task<FileTypeModel?> UpdateAsync(
+    Task<FileTypeModel> UpdateAsync(
         FileTypeModel fileType,
         string userName,
         CancellationToken cancellationToken = default

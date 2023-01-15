@@ -135,7 +135,7 @@ public interface IBlobManager
     /// or more arguments are missing, or invalid.</exception>
     /// <exception cref="ManagerException">This exception is thrown whenever the
     /// manager fails to complete the operation.</exception>
-    Task<BlobModel?> UpdateAsync(
+    Task<BlobModel> UpdateAsync(
         BlobModel blob,
         string userName,
         CancellationToken cancellationToken = default

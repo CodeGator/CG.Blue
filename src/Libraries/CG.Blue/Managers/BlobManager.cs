@@ -552,7 +552,7 @@ internal class BlobManager : IBlobManager
     // *******************************************************************
 
     /// <inheritdoc/>
-    public virtual async Task<BlobModel?> UpdateAsync(
+    public virtual async Task<BlobModel> UpdateAsync(
         BlobModel blob,
         string userName,
         CancellationToken cancellationToken = default

@@ -1,5 +1,6 @@
 <Project>
 	<PropertyGroup>
+        <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
 		<!-- Use Windows PDBs so OpenCover works -->
 		<DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
 		<DebugType Condition=" '$(Configuration)' == 'Release' ">pdbonly</DebugType>

@@ -1152,6 +1152,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Directors.ContentDirector.CreateAsync
   nameWithType: ContentDirector.CreateAsync
+- uid: CG.Blue.Directors.ContentDirector.DeleteAsync(BlobModel,System.String,CancellationToken)
+  name: DeleteAsync(BlobModel, String, CancellationToken)
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_DeleteAsync_BlobModel_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.ContentDirector.DeleteAsync(BlobModel,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.ContentDirector.DeleteAsync(BlobModel, System.String, CancellationToken)
+  nameWithType: ContentDirector.DeleteAsync(BlobModel, String, CancellationToken)
+- uid: CG.Blue.Directors.ContentDirector.DeleteAsync*
+  name: DeleteAsync
+  href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_DeleteAsync_
+  commentId: Overload:CG.Blue.Directors.ContentDirector.DeleteAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.ContentDirector.DeleteAsync
+  nameWithType: ContentDirector.DeleteAsync
 - uid: CG.Blue.Directors.ContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
   name: FindBitsByIdAsync(Guid, String, CancellationToken)
   href: api/CG.Blue.Directors.ContentDirector.html#CG_Blue_Directors_ContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_
@@ -1234,6 +1247,19 @@ references:
   isSpec: "True"
   fullName: CG.Blue.Directors.IContentDirector.CreateAsync
   nameWithType: IContentDirector.CreateAsync
+- uid: CG.Blue.Directors.IContentDirector.DeleteAsync(BlobModel,System.String,CancellationToken)
+  name: DeleteAsync(BlobModel, String, CancellationToken)
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_DeleteAsync_BlobModel_System_String_CancellationToken_
+  commentId: M:CG.Blue.Directors.IContentDirector.DeleteAsync(BlobModel,System.String,CancellationToken)
+  fullName: CG.Blue.Directors.IContentDirector.DeleteAsync(BlobModel, System.String, CancellationToken)
+  nameWithType: IContentDirector.DeleteAsync(BlobModel, String, CancellationToken)
+- uid: CG.Blue.Directors.IContentDirector.DeleteAsync*
+  name: DeleteAsync
+  href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_DeleteAsync_
+  commentId: Overload:CG.Blue.Directors.IContentDirector.DeleteAsync
+  isSpec: "True"
+  fullName: CG.Blue.Directors.IContentDirector.DeleteAsync
+  nameWithType: IContentDirector.DeleteAsync
 - uid: CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)
   name: FindBitsByIdAsync(Guid, String, CancellationToken)
   href: api/CG.Blue.Directors.IContentDirector.html#CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_
@@ -3518,6 +3544,19 @@ references:
   commentId: F:CG.Blue.V1.Controllers.BlobsController._mapper
   fullName: CG.Blue.V1.Controllers.BlobsController._mapper
   nameWithType: BlobsController._mapper
+- uid: CG.Blue.V1.Controllers.BlobsController.DeleteAsync(Guid)
+  name: DeleteAsync(Guid)
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_DeleteAsync_Guid_
+  commentId: M:CG.Blue.V1.Controllers.BlobsController.DeleteAsync(Guid)
+  fullName: CG.Blue.V1.Controllers.BlobsController.DeleteAsync(Guid)
+  nameWithType: BlobsController.DeleteAsync(Guid)
+- uid: CG.Blue.V1.Controllers.BlobsController.DeleteAsync*
+  name: DeleteAsync
+  href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_DeleteAsync_
+  commentId: Overload:CG.Blue.V1.Controllers.BlobsController.DeleteAsync
+  isSpec: "True"
+  fullName: CG.Blue.V1.Controllers.BlobsController.DeleteAsync
+  nameWithType: BlobsController.DeleteAsync
 - uid: CG.Blue.V1.Controllers.BlobsController.GetAsync(Guid)
   name: GetAsync(Guid)
   href: api/CG.Blue.V1.Controllers.BlobsController.html#CG_Blue_V1_Controllers_BlobsController_GetAsync_Guid_

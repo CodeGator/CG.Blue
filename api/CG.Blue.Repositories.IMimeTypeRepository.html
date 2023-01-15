@@ -714,7 +714,7 @@ underlying storage.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;MimeTypeModel?&gt; UpdateAsync(MimeTypeModel mimeType, CancellationToken cancellationToken = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;MimeTypeModel&gt; UpdateAsync(MimeTypeModel mimeType, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -751,10 +751,9 @@ for the lifetime of the method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.Nullable</span>&lt;<span class="xref">MimeTypeModel</span>&gt;&gt;</td>
+        <td><span class="xref">Task</span>&lt;<span class="xref">MimeTypeModel</span>&gt;</td>
         <td><p>A task to perform the operation that returns the newly updated
-<see cref="!:MimeTypeModel"></see> object, if a match was found, or <code>NULL</code>
-otherwise.</p>
+<see cref="!:MimeTypeModel"></see> object.</p>
 </td>
       </tr>
     </tbody>

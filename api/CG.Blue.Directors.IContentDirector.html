@@ -182,6 +182,81 @@ director fails to complete the operation.</p>
       </tr>
     </tbody>
   </table>
+  <a id="CG_Blue_Directors_IContentDirector_DeleteAsync_" data-uid="CG.Blue.Directors.IContentDirector.DeleteAsync*"></a>
+  <h4 id="CG_Blue_Directors_IContentDirector_DeleteAsync_BlobModel_System_String_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.DeleteAsync(BlobModel,System.String,CancellationToken)">DeleteAsync(BlobModel, String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>This method deletes an existing <see cref="!:BlobModel"></see> object from the
+underlying storage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task DeleteAsync(BlobModel blob, string userName, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BlobModel</span></td>
+        <td><span class="parametername">blob</span></td>
+        <td><p>The model to delete from the underlying storage.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userName</span></td>
+        <td><p>The user name of the person performing the
+operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that is monitored
+for the lifetime of the method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task to perform the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CG.Blue.Directors.DirectorException.html">DirectorException</a></td>
+        <td><p>This exception is thrown whenever the
+director fails to complete the operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <a id="CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_" data-uid="CG.Blue.Directors.IContentDirector.FindBitsByIdAsync*"></a>
   <h4 id="CG_Blue_Directors_IContentDirector_FindBitsByIdAsync_Guid_System_String_CancellationToken_" data-uid="CG.Blue.Directors.IContentDirector.FindBitsByIdAsync(Guid,System.String,CancellationToken)">FindBitsByIdAsync(Guid, String, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>This method searches for BLOB bits, using the given identifier.</p>

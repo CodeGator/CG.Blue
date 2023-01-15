@@ -32,6 +32,26 @@ public interface IContentDirector
         );
 
     /// <summary>
+    /// This method deletes an existing <see cref="BlobModel"/> object from the 
+    /// underlying storage.
+    /// </summary>
+    /// <param name="blob">The model to delete from the underlying storage.</param>
+    /// <param name="userName">The user name of the person performing the 
+    /// operation.</param>
+    /// <param name="cancellationToken">A cancellation token that is monitored
+    /// for the lifetime of the method.</param>
+    /// <returns>A task to perform the operation.</returns>
+    /// <exception cref="ArgumentException">This exception is thrown whenever one
+    /// or more arguments are missing, or invalid.</exception>
+    /// <exception cref="DirectorException">This exception is thrown whenever the
+    /// director fails to complete the operation.</exception>
+    Task DeleteAsync(
+        BlobModel blob,
+        string userName,
+        CancellationToken cancellationToken = default
+        );
+
+    /// <summary>
     /// This method searches for BLOB meta-data, using the given identifier.
     /// </summary>
     /// <param name="id">The identifier to use for the operation.</param>

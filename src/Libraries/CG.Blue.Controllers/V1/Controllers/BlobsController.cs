@@ -77,6 +77,7 @@ public class BlobsController : ControllerBase
     /// of the action.</returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public virtual async Task<IActionResult> DeleteAsync(
@@ -85,7 +86,37 @@ public class BlobsController : ControllerBase
     {
         try
         {
-            throw new NotImplementedException();
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Starting {name} method",
+                nameof(GetAsync)
+                );
+
+            // Sanity check the model state.
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            // Look for the meta-data.
+            var blobMetaData = await _blueApi.Content.FindByIdAsync(
+                id
+                ).ConfigureAwait(false);    
+
+            // Did we fail?
+            if (blobMetaData is null)
+            {
+                return NotFound();  
+            }
+
+            // Delete the BLOB.
+            await _blueApi.Content.DeleteAsync(
+                blobMetaData,
+                User.Identity?.Name ?? "anonymous"
+                ).ConfigureAwait(false);
+
+            // Return the results.
+            return NoContent();
         }
         catch (Exception ex)
         {

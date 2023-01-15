@@ -170,6 +170,50 @@ public class ContentDirector : IContentDirector
     // *******************************************************************
 
     /// <inheritdoc/>
+    public virtual async Task DeleteAsync(
+        BlobModel blob,
+        string userName,
+        CancellationToken cancellationToken = default
+        )
+    {
+        // Validate the parameters before attempting to use them.
+        Guard.Instance().ThrowIfNull(blob, nameof(blob))
+            .ThrowIfNullOrEmpty(userName, nameof(userName));
+
+        try
+        {
+            // Log what we are about to do.
+            _logger.LogTrace(
+                "Deferring to {name}",
+                nameof(IBlobManager.DeleteAsync)
+                );
+
+            // Delete the BLOB.
+            await _blobManager.DeleteAsync( 
+                blob, 
+                userName,
+                cancellationToken 
+                ).ConfigureAwait(false);  
+        }
+        catch (Exception ex)
+        {
+            // Log what happened.
+            _logger.LogError(
+                ex,
+                "Failed to delete a BLOB!"
+                );
+
+            // Provider better context.
+            throw new DirectorException(
+                message: $"The director failed to delete a BLOB!",
+                innerException: ex
+                );
+        }
+    }
+
+    // *******************************************************************
+
+    /// <inheritdoc/>
     public virtual async Task<BlobModel?> FindByIdAsync(
         Guid id,
         CancellationToken cancellationToken = default

@@ -390,6 +390,16 @@ internal class BlobManager : IBlobManager
                 blob,
                 cancellationToken
                 ).ConfigureAwait(false);
+
+            // Log what we are about to do.
+            _logger.LogDebug(
+                "Deleting bits from local storage"
+                );
+
+            // Delete the bits from local storage.
+            File.Delete(
+                blob.LocalFilePath
+                );
         }
         catch (Exception ex)
         {

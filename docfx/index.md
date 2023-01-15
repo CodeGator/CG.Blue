@@ -2,7 +2,7 @@
 
 # Introduction
 
-CG.Purple is an idea for a self contained messaging microservice. 
+CG.Blue is an idea for a file storage microservice. 
 
 
 

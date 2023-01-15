@@ -47,9 +47,10 @@ steps:
     testAssemblyVer2: |
       **\*test*.dll
       !**\*TestAdapter.dll
-      !*testhost.dll
       !**\obj\**
+      !**\bin\**\ref\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
+    codeCoverageEnabled: true
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
